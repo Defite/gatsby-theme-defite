@@ -86,7 +86,7 @@ export const pageQuery = graphql`
 				filter: { 
 					frontmatter: {
 						templateKey: { eq: "blog-post" },
-						status: { eq: "published" } 
+						published: { eq: true }
 					},
 					fields: { langKey: { eq: $langKey } },
 				}
@@ -105,7 +105,7 @@ export const pageQuery = graphql`
 						date(formatString: "MMMM DD, YYYY", locale: $langKey)
 						title
 						templateKey
-						status
+						published
 						path
 						excerpt
 					}

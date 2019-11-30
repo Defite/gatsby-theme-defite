@@ -1,6 +1,8 @@
 const postcssPresetEnv = require('postcss-preset-env');
+const defaultMenu = require('./site.lang');
+const path = require('path');
 
-module.exports = ({ contentPath = '/content/' }) => ({
+module.exports = ({ contentPath = '/content/', menu = defaultMenu }) => ({
   siteMetadata: {
     title: 'Nikita Makhov',
     author: 'Nikita Makhov',
@@ -10,19 +12,28 @@ module.exports = ({ contentPath = '/content/' }) => ({
   plugins: [
     'gatsby-theme-ui',
     {
+			resolve: 'gatsby-source-filesystem',
+			options: {
+				path: `./uploads`,
+				name: 'uploads',
+			},
+		},
+    {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `./${contentPath}pages`,
+        path: './content/pages',
         name: 'pages'
       }
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `./${contentPath}posts`,
+        path: './content/posts',
         name: 'posts'
       }
     },
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-plugin-react-svg',
       options: {
@@ -35,6 +46,7 @@ module.exports = ({ contentPath = '/content/' }) => ({
       resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
+          'gatsby-remark-relative-source',
           'gatsby-remark-unwrap-images',
           {
             resolve: 'gatsby-remark-images',
@@ -49,13 +61,10 @@ module.exports = ({ contentPath = '/content/' }) => ({
             }
           },
           'gatsby-remark-prismjs',
-          'gatsby-remark-copy-linked-files',
           'gatsby-remark-smartypants'
         ]
       }
     },
-    'gatsby-transformer-sharp',
-    'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
