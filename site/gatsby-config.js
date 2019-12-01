@@ -1,9 +1,28 @@
+const menu = require('./src/gatsby-theme-defite/langs/menu');
+const langs = Object.keys(menu);
+
 module.exports = {
     plugins: [
         {
             resolve: 'gatsby-theme-defite',
             options: {
-                contentPath: '/content/'
+                contentPath: '/content/',
+                siteMetadata: {
+                    title: 'Nikita Makhov',
+                    author: 'Nikita Makhov',
+                    description: 'Frontend developer blog',
+                    siteUrl: 'https://defite.ru',
+                },
+                manifestOptions: {
+                    name: 'Nikita Makhov',
+                    short_name: 'Defite.ru',
+                    start_url: '/',
+                    background_color: '#ffffff',
+                    theme_color: '#663399',
+                    display: 'minimal-ui',
+                    icon: 'assets/gatsby-icon.png'
+                },
+                langs
             }
         }
     ]

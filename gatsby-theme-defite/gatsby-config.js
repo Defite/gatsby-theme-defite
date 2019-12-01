@@ -1,14 +1,15 @@
 const postcssPresetEnv = require('postcss-preset-env');
-const defaultMenu = require('./site.lang');
-const path = require('path');
+const fetch = require('node-fetch');
+const { createHttpLink } = require('apollo-link-http');
 
-module.exports = ({ contentPath = '/content/', menu = defaultMenu }) => ({
-  siteMetadata: {
-    title: 'Nikita Makhov',
-    author: 'Nikita Makhov',
-    description: 'Frontend developer blog',
-    siteUrl: 'https://defite.ru'
-  },
+
+module.exports = ({ 
+  contentPath = '/content/',
+  siteMetadata = {},
+  pagesPaths = ['/pages/', '/posts/'],
+  manifestOptions = {},
+}) => ({
+  siteMetadata,
   plugins: [
     'gatsby-theme-ui',
     {
@@ -21,14 +22,14 @@ module.exports = ({ contentPath = '/content/', menu = defaultMenu }) => ({
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: './content/pages',
+        path: `.${contentPath}pages`,
         name: 'pages'
       }
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: './content/posts',
+        path: `.${contentPath}posts`,
         name: 'posts'
       }
     },
@@ -67,15 +68,7 @@ module.exports = ({ contentPath = '/content/', menu = defaultMenu }) => ({
     },
     {
       resolve: 'gatsby-plugin-manifest',
-      options: {
-        name: 'Nikita Makhov',
-        short_name: 'Defite.ru',
-        start_url: '/',
-        background_color: '#ffffff',
-        theme_color: '#663399',
-        display: 'minimal-ui',
-        icon: 'assets/gatsby-icon.png'
-      }
+      options: manifestOptions,
     },
     'gatsby-plugin-offline',
     'gatsby-plugin-react-helmet',
@@ -109,27 +102,27 @@ module.exports = ({ contentPath = '/content/', menu = defaultMenu }) => ({
         ]
       }
     },
-    // {
-    //   resolve: 'gatsby-source-graphql',
-    //   options: {
-    //     fieldName: 'github',
-    //     typeName: 'GitHub',
-    //     createLink: () =>
-    //       createHttpLink({
-    //         uri: 'https://api.github.com/graphql',
-    //         headers: {
-    //           Authorization: `bearer ${process.env.APP_GITHUB_TOKEN}`
-    //         },
-    //         fetch
-    //       })
-    //   }
-    // },
+    {
+      resolve: 'gatsby-source-graphql',
+      options: {
+        fieldName: 'github',
+        typeName: 'GitHub',
+        createLink: () =>
+          createHttpLink({
+            uri: 'https://api.github.com/graphql',
+            headers: {
+              Authorization: `bearer ${process.env.APP_GITHUB_TOKEN}`
+            },
+            fetch
+          })
+      }
+    },
     {
       resolve: 'gatsby-plugin-i18n',
       options: {
         langKeyDefault: 'ru',
         useLangKeyLayout: false,
-        pagesPaths: ['/pages/', '/posts/']
+        pagesPaths
       }
     },
     {

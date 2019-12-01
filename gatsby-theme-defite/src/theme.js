@@ -24,6 +24,11 @@ export const theme = {
       fontWeight: 'headings',
       lineHeight: '1.1',
     },
+    h2: {
+      fontFamily: 'headings',
+      fontSize: '1.62671em',
+      fontWeight: 'headings'
+    },
     h3: {
       fontFamily: 'headings',
       fontWeight: 'headings',

@@ -2,24 +2,31 @@ import React from 'react';
 import { Link } from 'gatsby';
 import styles from './style.module.css';
 import LangContext from '../../context/langContext';
+import langs from '../../langs/menu';
 
 class LanguageSwitcher extends React.Component {
 	static contextType = LangContext;
 
 	render() {
-		const { lang, location } = this.context;
-		const slug = location.pathname.replace('/en/', '/');
-		const isRus = lang === 'ru';
-		const isEn = lang === 'en';
+		const { defaultLang, lang, location } = this.context;
+		const slug = location.pathname.replace(`/${lang}/`, '/');
+		const langsAliases = Object.keys(langs);
 
 		return (
 			<span className={styles.switcher}>
-				<Link className={isEn ? styles.active : ''} to={`en${slug}`}>
-					en
-				</Link>
-				<Link className={isRus ? styles.active : ''} to={slug}>
-					рус
-				</Link>
+				{
+					langsAliases.map((alias, index) => {
+						return (
+							<Link
+								key={`lang-${index}`}
+								to={defaultLang === alias ? slug : alias + '/' + slug}
+								activeClassName={styles.active}
+							>
+								{alias}
+							</Link>
+						)
+					})
+				}
 			</span>
 		);
 	}

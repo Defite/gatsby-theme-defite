@@ -4,7 +4,7 @@ import { graphql } from 'gatsby';
 import Helmet from 'react-helmet';
 
 import Layout from '../components/layout';
-// import GithubRepoList from '../components/GithubRepoList';
+import GithubRepoList from '../components/GithubRepoList';
 
 import styles from './home.module.css';
 
@@ -12,7 +12,7 @@ export const IndexPage = (props) => {
 	const { data, data: { markdownRemark }, location } = props;
 	const { title, description } = data.site.siteMetadata;
 	const { langKey } = markdownRemark.fields;
-	// const { edges: repos } = data.github.viewer.pinnedRepositories;
+	const { edges: repos } = data.github.viewer.pinnedRepositories;
 
 	/* eslint-disable react/no-danger */
 	return (
@@ -27,7 +27,7 @@ export const IndexPage = (props) => {
 					<div dangerouslySetInnerHTML={{ __html: markdownRemark.html }} />
 				</section>
 				<section className="grid">
-					{/* <GithubRepoList repositories={repos} lang={langKey} /> */}
+					<GithubRepoList repositories={repos} lang={langKey} />
 				</section>
 			</div>
 		</Layout>
@@ -66,19 +66,19 @@ export const pageQuery = graphql`
 				path
 			}
 		}
-		# github {
-		# 	viewer {
-		# 		name
-		# 		pinnedRepositories(first: 6) {
-		# 			edges {
-		# 				node {
-		# 					name
-		# 					url
-		# 					descriptionHTML
-		# 				}
-		# 			}
-		# 		}
-		# 	}
-		# }
+		github {
+			viewer {
+				name
+				pinnedRepositories(first: 6) {
+					edges {
+						node {
+							name
+							url
+							descriptionHTML
+						}
+					}
+				}
+			}
+		}
 	}
 `;

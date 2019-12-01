@@ -40,6 +40,10 @@
   }
 }
 
+:global .gatsby-resp-image-link {
+  box-shadow: none;
+}
+
 :global .image-with-caption + table {
   grid-column: 2 / 9;
 
