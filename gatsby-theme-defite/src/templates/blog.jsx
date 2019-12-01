@@ -7,19 +7,24 @@ import { Styled } from 'theme-ui';
 
 import Layout from '../components/layout';
 import BlogPagination from '../components/BlogPagination';
+import langs from '../langs/menu';
 
 export const BlogIndex = (props) => {
 	const { data, location, pageContext } = props;
 	const { site, allMarkdownRemark } = data;
-	const { title, description } = site.siteMetadata;
+	const { description } = site.siteMetadata;
 	const posts = allMarkdownRemark.edges;
 	const {
 		langKey,
-		pageTitle,
 		currentPage,
 		numPages,
 	} = pageContext;
-	const langPrefix = langKey === 'en' ? 'en' : '';
+
+	const defaultLang = Object.keys(langs)[0];
+	const langPrefix = langKey === defaultLang ? '' : langKey;
+	const blogItemIndex = langs[langKey].menu.findIndex(item => item.link === 'blog');
+	const blogTitle = langs[langKey].menu[blogItemIndex].text;
+	const title = langs[langKey].title;
 
 	/* eslint-disable react/no-danger */
 	return (
@@ -27,7 +32,7 @@ export const BlogIndex = (props) => {
 			<Helmet
 				htmlAttributes={{ lang: langKey, class: 'blog' }}
 				meta={[{ name: 'description', content: description }]}
-				title={`${pageTitle} | ${title}`}
+				title={`${blogTitle} | ${title}`}
 			/>
 			<div className="grid">
 				<div className="grid-inner">
@@ -45,7 +50,11 @@ export const BlogIndex = (props) => {
 											{customTitle}
 										</Link>
 									</Styled.h3>
-									<small>{node.frontmatter.date}</small>
+									<small sx={{
+											marginBottom: '0.5rem',
+											marginTop: '-0.9rem',
+											display: 'block'
+									}}>{node.frontmatter.date}</small>
 									<Styled.p dangerouslySetInnerHTML={{ __html: node.frontmatter.excerpt }} />
 								</div>
 							);

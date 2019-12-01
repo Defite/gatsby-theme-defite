@@ -13,8 +13,8 @@ class Menu extends React.Component {
 		return (
 			<ul className={styles.menu}>
 				{
-					items.map(item => (
-						<MenuItem link={item.link} text={item.text} lang={lang} key={`menu-item-${item.id}`} />
+					items.map((item, index) => (
+						<MenuItem link={item.link} text={item.text} lang={lang} key={`menu-item-${index}`} />
 					))
 				}
 			</ul>

@@ -38,6 +38,7 @@
     "gatsby-remark-smartypants": "^2.1.16",
     "gatsby-remark-unwrap-images": "^1.0.1",
     "gatsby-source-filesystem": "^2.1.38",
+    "gatsby-source-graphql": "^2.1.25",
     "gatsby-theme-ui": "^0.2.0",
     "gatsby-transformer-remark": "^2.6.37",
     "gatsby-transformer-sharp": "^2.3.5",

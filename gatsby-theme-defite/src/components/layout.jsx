@@ -1,26 +1,27 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
-import translate from '../../site.lang';
 import LangContext from '../context/langContext';
 import Header from './Header';
 import Menu from './Menu';
 import { Styled } from 'theme-ui';
+import menu from '../langs/menu';
+
 import './layout.css';
+
+const menuOpenCls = 'menu-visible';
 
 const Template = (props) => {
 	const { children, lang, location } = props;
-	const langPref = lang === 'en' ? '/en' : '';
+	
+	const defaultLang = Object.keys(menu)[0];
+	const langPref = lang === defaultLang ? '' : `/${lang}`;
 
 	const state = {
+		defaultLang,
 		lang,
 		langPref,
 		location,
 	};
-
-	const currLang = translate[lang];
-	const menuItems = currLang.menu || [];
-	const menuOpenCls = 'menu-visible';
 
 	const handleMenuToggle = (event) => {
 		const isWrapper = event.target.getAttribute('class') === 'wrapper';
@@ -46,11 +47,16 @@ const Template = (props) => {
 								}
 							}
 						`}
-						render={() => (
-							<Header title={currLang.title}>
-								<Menu items={menuItems} />
-							</Header>
-						)}
+						render={() => {
+							const currLang = menu[lang];
+							const menuItems = currLang.menu || [];
+
+							return (
+								<Header title={currLang.title}>
+									<Menu items={menuItems} />
+								</Header>
+							)}
+						}
 					/>
 					{children}
 				</div>
@@ -58,15 +64,6 @@ const Template = (props) => {
 		</Styled.root>
 		
 	);
-};
-
-Template.defaultProps = {
-	lang: 'ru',
-};
-
-Template.propTypes = {
-	children: PropTypes.node.isRequired,
-	lang: PropTypes.string,
 };
 
 export default Template;

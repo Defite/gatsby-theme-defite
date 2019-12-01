@@ -5,7 +5,6 @@ import { graphql } from 'gatsby';
 import { Styled } from 'theme-ui';
 
 import Layout from '../components/layout';
-// import { rhythm, scale } from '../utils/typography';
 
 export const PageTemplate = (props) => {
 	const { data, pageContext, location } = props;
@@ -34,11 +33,7 @@ export const PageTemplate = (props) => {
 						{post.frontmatter.date}
 					</p>
 					<div dangerouslySetInnerHTML={{ __html: post.html }} />
-					<hr
-						style={{
-							// marginBottom: rhythm(1),
-						}}
-					/>
+					<hr />
 				</div>
 			</div>
 		</Layout>

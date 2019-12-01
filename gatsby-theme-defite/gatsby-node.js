@@ -1,6 +1,7 @@
-exports.createPages = async ({ graphql, actions }) => {
-	const { createPage } = actions;
+// import menu from '../langs/menu';
 
+exports.createPages = async ({ graphql, actions }, options) => {
+	const { createPage } = actions;
 	const blogPost = require.resolve('./src/templates/blog-post.jsx');
 
 	await graphql(`
@@ -36,27 +37,31 @@ exports.createPages = async ({ graphql, actions }) => {
 
 		// Create blog posts pages.
 		const posts = edges.filter(({ node }) => node.frontmatter.templateKey === 'blog-post');
+		const defaultLang = options.langs[0];
 
 		posts.forEach((post, index) => {
 			const previous = index === posts.length - 1 ? null : posts[index + 1].node;
 			const next = index === 0 ? null : posts[index - 1].node;
 
+			const { langKey, slug } = post.node.fields
+
 			createPage({
 				path: post.node.frontmatter.path,
 				component: blogPost,
 				context: {
-					slug: post.node.fields.slug,
+					slug,
 					previous,
 					next,
-					langKey: post.node.fields.langKey === 'en' ? 'en' : '',
+					langKey: langKey === defaultLang ? '' : langKey,
 				},
 			});
 		});
 
 		// Create blog post list pages
 		const postsPerPage = 5;
-		['ru', 'en'].forEach((lang) => {
-			const langPrefix = lang === 'en' ? 'en/' : '';
+
+		options.langs.forEach((lang) => {
+			const langPrefix = lang === defaultLang ? '' : `${lang}/`;
 			const blogPosts = edges.filter(({ node }) => node.frontmatter.templateKey === 'blog-post' && node.fields.langKey === lang);
 			const numPages = Math.ceil(blogPosts.length / postsPerPage);
 			Array.from({ length: numPages }).forEach((_, i) => {
@@ -68,8 +73,7 @@ exports.createPages = async ({ graphql, actions }) => {
 						skip: i * postsPerPage,
 						numPages,
 						currentPage: i + 1,
-						langKey: lang,
-						pageTitle: lang === 'en' ? 'Blog' : 'Блог',
+						langKey: lang
 					},
 				});
 			});
@@ -99,4 +103,3 @@ exports.createPages = async ({ graphql, actions }) => {
 		});
 	});
 };
-
