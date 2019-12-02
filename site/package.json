@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "develop": "APP_GITHUB_TOKEN=4d9274fc16789ac09df049400397462bde4dc170 gatsby develop",
+    "develop": "gatsby develop",
     "clean": "gatsby clean"
   },
   "dependencies": {
