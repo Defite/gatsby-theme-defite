@@ -1,5 +1,5 @@
 {
-  "name": "gatsby-theme-defite",
+  "name": "@defite/gatsby-theme-defite",
   "version": "1.0.0",
   "license": "MIT",
   "main": "index.js",
@@ -46,5 +46,8 @@
     "prismjs": "^1.17.1",
     "react-helmet": "^5.2.1",
     "theme-ui": "^0.2.49"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }

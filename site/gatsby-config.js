@@ -1,10 +1,10 @@
-const menu = require('./src/gatsby-theme-defite/langs/menu');
+const menu = require('./src/@defite/gatsby-theme-defite/langs/menu');
 const langs = Object.keys(menu);
 
 module.exports = {
     plugins: [
         {
-            resolve: 'gatsby-theme-defite',
+            resolve: '@defite/gatsby-theme-defite',
             options: {
                 contentPath: '/content/',
                 siteMetadata: {
