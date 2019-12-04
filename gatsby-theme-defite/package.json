@@ -1,6 +1,7 @@
 {
   "name": "@defite/gatsby-theme-defite",
-  "version": "1.0.0",
+  "description": "Gatsby theme for defite.ru",
+  "version": "1.0.1",
   "license": "MIT",
   "main": "index.js",
   "scripts": {
@@ -46,5 +47,16 @@
     "prismjs": "^1.17.1",
     "react-helmet": "^5.2.1",
     "theme-ui": "^0.2.52"
-  }
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Defite/gatsby-theme-defite.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Defite/gatsby-theme-defite/issues"
+  },
+  "homepage": "https://github.com/Defite/gatsby-theme-defite#readme"
 }
