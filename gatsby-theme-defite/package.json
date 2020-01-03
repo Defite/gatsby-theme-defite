@@ -1,7 +1,7 @@
 {
   "name": "@defite/gatsby-theme-defite",
   "description": "Gatsby theme for defite.ru",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "license": "MIT",
   "main": "index.js",
   "scripts": {
