@@ -59,8 +59,13 @@
   font-size: 0.85em;
 }
 
-:global .full-image + .gatsby-resp-image-link {
+:global .image-with-caption + table th .gatsby-resp-image-wrapper {
+  margin-left: auto !important;
+}
+
+:global .full-image + .gatsby-resp-image-wrapper {
   grid-column: 1 / 13;
+  width: 100%;
 }
 
 :global .gatsby-resp-image-wrapper {
