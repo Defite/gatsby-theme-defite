@@ -46,11 +46,7 @@
     "postcss-preset-env": "^6.7.0",
     "prismjs": "^1.17.1",
     "react-helmet": "^5.2.1",
-<<<<<<< HEAD
     "theme-ui": "^0.2.52"
-  }
-=======
-    "theme-ui": "^0.2.49"
   },
   "repository": {
     "type": "git",
@@ -60,5 +56,4 @@
     "url": "https://github.com/Defite/gatsby-theme-defite/issues"
   },
   "homepage": "https://github.com/Defite/gatsby-theme-defite#readme"
->>>>>>> 27909c1a1473232f6e1851732cc7b8765e716b16
 }
