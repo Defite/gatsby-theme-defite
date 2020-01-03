@@ -13,12 +13,12 @@ module.exports = ({
   plugins: [
     'gatsby-theme-ui',
     {
-			resolve: 'gatsby-source-filesystem',
-			options: {
-				path: `./uploads`,
-				name: 'uploads',
-			},
-		},
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `./uploads`,
+        name: 'uploads',
+      },
+    },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -47,8 +47,8 @@ module.exports = ({
       resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
-          'gatsby-remark-relative-source',
           'gatsby-remark-unwrap-images',
+          'gatsby-remark-relative-source',
           {
             resolve: 'gatsby-remark-images',
             options: {
