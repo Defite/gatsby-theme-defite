@@ -1,5 +1,9 @@
 # Gatsby theme for Defite.ru
 
+![Gatsby theme for Defite.ru](https://user-images.githubusercontent.com/299118/70140860-ba0cba80-16a6-11ea-82c2-f28a865487c5.png)
+
+**[Preview live site](https://defite.ru/en/)**
+
 ## Why?
 
 I wanted to store theme files separate from content files.
