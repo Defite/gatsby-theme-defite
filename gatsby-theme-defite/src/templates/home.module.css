@@ -46,5 +46,16 @@
     background: #1bafe0;
     letter-spacing: 0.03em;
   }
+}
 
+@media only screen and (max-width: 425px) {
+  .intro {
+    & span {
+      padding: 0.5rem 1.5rem;
+    }
+  }
+
+  .inner {
+    width: 100%;
+  }
 }

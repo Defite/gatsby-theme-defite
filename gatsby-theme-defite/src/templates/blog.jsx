@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Link, graphql } from 'gatsby';
 import Helmet from 'react-helmet';
 import { Styled } from 'theme-ui';
+import styles from './blog.module.css';
 
 import Layout from '../components/layout';
 import BlogPagination from '../components/BlogPagination';
@@ -11,8 +12,8 @@ import langs from '../langs/menu';
 
 export const BlogIndex = (props) => {
 	const { data, location, pageContext } = props;
-	const { site, allMarkdownRemark } = data;
-	const { description } = site.siteMetadata;
+	const { site, allMarkdownRemark, markdownRemark: page } = data;
+	const { description, title } = site.siteMetadata;
 	const posts = allMarkdownRemark.edges;
 	const {
 		langKey,
@@ -24,7 +25,7 @@ export const BlogIndex = (props) => {
 	const langPrefix = langKey === defaultLang ? '' : langKey;
 	const blogItemIndex = langs[langKey].menu.findIndex(item => item.link === 'blog');
 	const blogTitle = langs[langKey].menu[blogItemIndex].text;
-	const title = langs[langKey].title;
+	const authorName = langs[langKey].title || title;
 
 	/* eslint-disable react/no-danger */
 	return (
@@ -32,11 +33,12 @@ export const BlogIndex = (props) => {
 			<Helmet
 				htmlAttributes={{ lang: langKey, class: 'blog' }}
 				meta={[{ name: 'description', content: description }]}
-				title={`${blogTitle} | ${title}`}
+				title={`${blogTitle} | ${authorName}`}
 			/>
 			<div className="grid">
 				<div className="grid-inner">
-					<section className="blog-list">
+					<Styled.h1>{blogTitle}</Styled.h1>
+					<section className={styles.blogList}>
 						{posts.map(({ node }) => {
 							const customTitle = node.frontmatter.title || node.fields.slug;
 							return (

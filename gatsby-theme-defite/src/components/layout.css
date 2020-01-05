@@ -1,5 +1,6 @@
 body {
     color: #3e3e3e;
+    font-size: 100%;
 }
 
 html {
@@ -61,7 +62,7 @@ h3 {
 }
 @media (max-width: 768px) {
     body {
-        font-size: 118%;
+        font-size: 80%;
     }
 
     .header {
@@ -90,4 +91,3 @@ h3 {
         }
     }
 }
-

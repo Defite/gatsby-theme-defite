@@ -4,15 +4,17 @@ import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 import { Styled } from 'theme-ui';
 
+import langs from '../langs/menu';
 import Layout from '../components/layout';
 
 export const PageTemplate = (props) => {
 	const { data, pageContext, location } = props;
-	const { markdownRemark: post, site } = data;
+	const { markdownRemark: page, site } = data;
+	const { description, title } = site.siteMetadata;
 	const { pageType } = pageContext;
-	const { title: siteTitle } = site.siteMetadata;
-	const siteDescription = post.excerpt;
-	const { langKey } = post.fields;
+	const siteDescription = page.excerpt || description;
+	const { langKey } = page.fields;
+	const authorName = langs[langKey].title || title;
 
 	/* eslint-disable react/no-danger */
 	return (
@@ -20,19 +22,19 @@ export const PageTemplate = (props) => {
 			<Helmet
 				htmlAttributes={{ lang: langKey, class: `${pageType}` }}
 				meta={[{ name: 'description', content: siteDescription }]}
-				title={`${post.frontmatter.title} | ${siteTitle}`}
+				title={`${page.frontmatter.title} | ${authorName}`}
 			/>
 			<div className="grid">
 				<div className="grid-inner">
-					<Styled.h1>{post.frontmatter.title}</Styled.h1>
+					<Styled.h1>{page.frontmatter.title}</Styled.h1>
 					<p
 						style={{
 							display: 'block',
 						}}
 					>
-						{post.frontmatter.date}
+						{page.frontmatter.date}
 					</p>
-					<div dangerouslySetInnerHTML={{ __html: post.html }} />
+					<div dangerouslySetInnerHTML={{ __html: page.html }} />
 					<hr />
 				</div>
 			</div>

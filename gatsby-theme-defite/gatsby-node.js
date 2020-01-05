@@ -1,5 +1,3 @@
-// import menu from '../langs/menu';
-
 exports.createPages = async ({ graphql, actions }, options) => {
 	const { createPage } = actions;
 	const blogPost = require.resolve('./src/templates/blog-post.jsx');

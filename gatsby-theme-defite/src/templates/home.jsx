@@ -3,16 +3,19 @@ import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import Helmet from 'react-helmet';
 
+import langs from '../langs/menu';
 import Layout from '../components/layout';
 import GithubRepoList from '../components/GithubRepoList';
 
 import styles from './home.module.css';
 
 export const IndexPage = (props) => {
-	const { data, data: { markdownRemark }, location } = props;
-	const { title, description } = data.site.siteMetadata;
-	const { langKey } = markdownRemark.fields;
-	const { edges: repos } = data.github.viewer.pinnedRepositories;
+	const { data ,location, } = props;
+	const { github, markdownRemark: page, site } = data;
+	const { description, title } = site.siteMetadata;
+	const { langKey } = page.fields;
+	const authorName = langs[langKey].title || title;
+	const { edges: repos } = github.viewer.pinnedRepositories;
 
 	/* eslint-disable react/no-danger */
 	return (
@@ -20,11 +23,11 @@ export const IndexPage = (props) => {
 			<Helmet
 				htmlAttributes={{ lang: langKey, class: 'home' }}
 				meta={[{ name: 'description', content: description }]}
-				title={title}
+				title={`${page.frontmatter.title} | ${authorName}`}
 			/>
 			<div className="grid-inner">
 				<section className={styles.intro}>
-					<div dangerouslySetInnerHTML={{ __html: markdownRemark.html }} />
+					<div className={styles.inner} dangerouslySetInnerHTML={{ __html: page.html }} />
 				</section>
 				<section className="grid">
 					<GithubRepoList repositories={repos} lang={langKey} />
