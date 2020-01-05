@@ -71,6 +71,10 @@
 :global .gatsby-resp-image-wrapper {
   width: 70%;
   margin-left: 0 !important;
+
+  @media screen and (max-width: 425px) {
+    width: 100%;
+  }
 }
 
 :global .gatsby-resp-image-image {

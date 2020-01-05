@@ -15,3 +15,11 @@
 
   color: #757575;
 }
+
+.blog-list h3 {
+  line-height: 1.5em;
+}
+
+.blog-list small {
+  margin-top: -0.5rem;
+}
