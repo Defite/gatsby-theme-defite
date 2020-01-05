@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
+#### [v1.1.3](https://github.com/Defite/gatsby-theme-defite/compare/v1.1.2...v1.1.3)
+
+> 5 January 2020
+
+- Fix mobile version, fix title [`6545fc9`](https://github.com/Defite/gatsby-theme-defite/commit/6545fc9832937ac7f8e9d47e3cfd83665d5f4fd8)
+
 #### [v1.1.2](https://github.com/Defite/gatsby-theme-defite/compare/v1.1.1...v1.1.2)
 
 > 3 January 2020
@@ -19,7 +25,6 @@ All notable changes to this project will be documented in this file. Dates are d
 > 3 January 2020
 
 - Add Prism.js theme [`b1f9c6e`](https://github.com/Defite/gatsby-theme-defite/commit/b1f9c6e0c1b5607dd468f619b87bbcd96948af6f)
-- Update README.md [`5002668`](https://github.com/Defite/gatsby-theme-defite/commit/50026683bfd982056da59ad951f244e03977294a)
 
 #### [v1.0.1](https://github.com/Defite/gatsby-theme-defite/compare/v1.0.0...v1.0.1)
 
