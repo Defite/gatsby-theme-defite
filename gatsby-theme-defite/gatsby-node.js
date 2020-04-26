@@ -1,20 +1,20 @@
 // gatsby-node.js
-// exports.createSchemaCustomization = ({ actions }) => {
-// 	const { createTypes } = actions;
-
-// 	const typeDefs = [
-// 		`type MarkdownRemark implements Node {
-// 			frontmatter: Frontmatter
-// 			}`,
-// 		`type Frontmatter @infer {
-// 					coverImg: [File!]! @fileByRelativePath,
-// 			}`,
-// 	];
-
-// 	createTypes(typeDefs);
-// };
-
 const { fmImagesToRelative } = require('gatsby-remark-relative-source');
+
+exports.createSchemaCustomization = ({ actions }) => {
+	const { createTypes } = actions;
+
+	const typeDefs = `
+		type MarkdownRemark implements Node {
+			frontmatter: Frontmatter
+		}
+		type Frontmatter {
+			coverImg: File @fileByRelativePath
+		}
+	`;
+
+	createTypes(typeDefs);
+};
 
 exports.onCreateNode = ({ node }) => {
 	fmImagesToRelative(node);
