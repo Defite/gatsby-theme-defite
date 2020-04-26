@@ -43,3 +43,10 @@ And now I'll paste codesandbox widget.
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
    ></iframe>
 
+### Here is Carbon post
+
+<iframe
+  src="https://carbon.now.sh/embed/P6NeN49MgBHkDCJXe126"
+  style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+  sandbox="allow-scripts allow-same-origin">
+</iframe>
