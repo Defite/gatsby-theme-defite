@@ -66,6 +66,7 @@
 
 .card-figure {
 	margin: 0;
+	max-height: 300px;
 }
 
 .card-image {
