@@ -6,7 +6,7 @@ exports.createSchemaCustomization = ({ actions }) => {
 			frontmatter: Frontmatter
 			}`,
 		`type Frontmatter @infer {
-					coverImg: [File!]! @fileByRelativePath,
+				coverImg: File @fileByRelativePath,
 			}`,
 	];
 
