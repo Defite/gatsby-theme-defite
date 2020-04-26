@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'gatsby';
-// import { rhythm } from '../../utils/typography';
 import styles from './style.module.css';
 
 /* eslint-disable react/no-danger */
@@ -11,11 +10,17 @@ const BlogPagination = ({ currentPage, numPages, langPrefix }) => {
 	const prevPage = currentPage - 1 === 1 ? '/' : (currentPage - 1).toString();
 	const nextPage = (currentPage + 1).toString();
 
+	if (numPages === 1) {
+		return null;
+	}
+
 	return (
 		<ul className={styles.pagination}>
 			{!isFirst && (
 				<li>
-					<Link to={blogPrefix + prevPage} rel="prev">←</Link>
+					<Link to={blogPrefix + prevPage} rel="prev">
+						←
+					</Link>
 				</li>
 			)}
 			{Array.from({ length: numPages }, (_, i) => (
@@ -35,7 +40,9 @@ const BlogPagination = ({ currentPage, numPages, langPrefix }) => {
 			))}
 			{!isLast && (
 				<li>
-					<Link to={blogPrefix + nextPage} rel="next">→</Link>
+					<Link to={blogPrefix + nextPage} rel="next">
+						→
+					</Link>
 				</li>
 			)}
 		</ul>

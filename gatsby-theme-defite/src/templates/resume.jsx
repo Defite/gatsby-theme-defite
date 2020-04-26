@@ -1,9 +1,12 @@
-import React from 'react';
+/** @jsx jsx */
+import { jsx } from 'theme-ui';
+
+// import React from 'react';
 import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
 
-import langs from '../langs/menu';
+import langs from '../langs/menuDict';
 import Layout from '../components/layout';
 
 import styles from './resume.module.css';
@@ -31,8 +34,10 @@ export const ResumeTemplate = (props) => {
 					<div
 						className={styles.resume__body}
 						dangerouslySetInnerHTML={{ __html: page.html }}
+						sx={{
+							variant: 'cv'
+						}}
 					/>
-					<hr />
 				</div>
 			</div>
 		</Layout>

@@ -1,18 +1,20 @@
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import LangContext from '../context/langContext';
+import Container from '../components/Container';
 import Header from './Header';
-import Menu from './Menu';
+import Footer from './Footer';
+import Navbar from './Navbar';
+import NavbarBrand from './NavbarBrand';
+import NavbarMenu from './NavbarMenu';
 import { Styled } from 'theme-ui';
-import menu from '../langs/menu';
+import menu from '../langs/menuDict';
 
 import './layout.css';
 
-const menuOpenCls = 'menu-visible';
-
 const Template = (props) => {
 	const { children, lang, location } = props;
-	
+
 	const defaultLang = Object.keys(menu)[0];
 	const langPref = lang === defaultLang ? '' : `/${lang}`;
 
@@ -23,20 +25,10 @@ const Template = (props) => {
 		location,
 	};
 
-	const handleMenuToggle = (event) => {
-		const isWrapper = event.target.getAttribute('class') === 'wrapper';
-		const isMenuVisible = document.body.classList.contains(menuOpenCls);
-
-		if (isWrapper && isMenuVisible) {
-			document.body.classList.remove(menuOpenCls);
-		}
-	};
-
 	return (
 		<Styled.root>
 			<LangContext.Provider value={state}>
-				{/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
-				<div className="wrapper" onClick={handleMenuToggle} onKeyDown={handleMenuToggle}>
+				<div className="wrapper">
 					<StaticQuery
 						query={graphql`
 							query HeadingQuery {
@@ -52,17 +44,22 @@ const Template = (props) => {
 							const menuItems = currLang.menu || [];
 
 							return (
-								<Header title={currLang.title}>
-									<Menu items={menuItems} />
+								<Header>
+									<Navbar>
+										<NavbarBrand langPrefix={langPref}>
+											{currLang.title}
+										</NavbarBrand>
+										<NavbarMenu items={menuItems} />
+									</Navbar>
 								</Header>
-							)}
-						}
+							);
+						}}
 					/>
-					{children}
+					<Container className="main">{children}</Container>
+					<Footer lang={lang} />
 				</div>
 			</LangContext.Provider>
 		</Styled.root>
-		
 	);
 };
 

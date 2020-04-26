@@ -1,10 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
-import { graphql } from 'gatsby';
-import { Styled } from 'theme-ui';
+/** @jsx jsx */
 
-import langs from '../langs/menu';
+import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
+import { graphql } from 'gatsby';
+import { jsx } from 'theme-ui';
+
+import langs from '../langs/menuDict';
 import Layout from '../components/layout';
 
 export const PageTemplate = (props) => {
@@ -26,7 +27,7 @@ export const PageTemplate = (props) => {
 			/>
 			<div className="grid">
 				<div className="grid-inner">
-					<Styled.h1>{page.frontmatter.title}</Styled.h1>
+					<h1 sx={{ variant: 'styles.h2' }}>{page.frontmatter.title}</h1>
 					<p
 						style={{
 							display: 'block',
@@ -34,7 +35,7 @@ export const PageTemplate = (props) => {
 					>
 						{page.frontmatter.date}
 					</p>
-					<div dangerouslySetInnerHTML={{ __html: page.html }} />
+					<div sx={{ variant: 'styles' }} dangerouslySetInnerHTML={{ __html: page.html }} />
 					<hr />
 				</div>
 			</div>

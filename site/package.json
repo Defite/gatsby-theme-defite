@@ -5,12 +5,13 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
-    "clean": "gatsby clean"
+    "develop": "APP_GITHUB_TOKEN=2b51ddface9dfce7815952404e4eaab7e0e9059b gatsby develop",
+    "clean": "gatsby clean",
+    "serve": "gatsby serve"
   },
   "dependencies": {
     "gatsby": "^2.18.1",
-    "@defite/gatsby-theme-defite": "1.0.0",
+    "@defite/gatsby-theme-defite": "*",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   }

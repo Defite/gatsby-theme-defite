@@ -1,55 +1,44 @@
 .post {
-  grid-row: 3;
-  grid-column: 1 / 13;
+  margin-bottom: auto;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
 }
 
-.header {
-  grid-column: 2 / 12;
-}
-
-.article {
-  grid-column: 1 / 13;
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-}
-
+.header,
+.article,
 .article * {
-  grid-column: 2 / 12;
+  grid-column: 1 / 10;
+
+  @media (max-width: 1024px) {
+    grid-column: 1 / 13;
+  }
 }
 
-.article p {
-  grid-column: 2 / 9
+.article table {
+  width: 100%;
 }
 
 .time {
-  font-size: 0.85028em;
-  display: block;
   margin-bottom: 1.82em;
-  margin-top: -1.82em;
+  color: var(--text-grey-dark);
 }
 
-:global .gatsby-resp-image-link,
-:global .gatsby-highlight {
-  grid-column: 2 / 9;
+.metaSeparator {
+  margin: 0 5px;
+} 
+
+:global(.gatsby-resp-image-link),
+:global(.gatsby-highlight) {
+  grid-column: 1 / 10;
   margin-bottom: 1.82rem;
 
-  @media (max-width: 425px) {
+  @media (max-width: 767px) {
     grid-column: 1 / 13;
   }
 }
 
-:global .gatsby-resp-image-link {
+:global(.gatsby-resp-image-link) {
   box-shadow: none;
-}
-
-:global .image-with-caption + table {
-  grid-column: 2 / 9;
-
-  @media (max-width: 425px) {
-    grid-column: 1 / 13;
-  }
 }
 
 :global .image-with-caption + table tbody td {
@@ -63,25 +52,20 @@
   margin-left: auto !important;
 }
 
-:global .full-image + .gatsby-resp-image-wrapper {
+:global(.full-image) + :global(.gatsby-resp-image-wrapper) {
   grid-column: 1 / 13;
   width: 100%;
 }
 
-:global .gatsby-resp-image-wrapper {
-  width: 70%;
-  margin-left: 0 !important;
-
-  @media screen and (max-width: 425px) {
-    width: 100%;
-  }
+:global(.gatsby-resp-image-wrapper) {
+  width: 100%;
 }
 
-:global .gatsby-resp-image-image {
+:global(.gatsby-resp-image-image) {
   height: inherit !important;
 }
 
-:global .gatsby-highlight-code-line {
+:global(.gatsby-highlight-code-line) {
   background-color: #feb;
   display: block;
   margin-right: -1em;
@@ -91,10 +75,16 @@
   border-left: 0.25em solid #f99;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 1024px) {
   .header,
   .article *,
   .article p {
     grid-column: 1 / 13;
+  }
+}
+
+@media (max-width: 425px) {
+  .time {
+    font-size: 1rem !important;
   }
 }

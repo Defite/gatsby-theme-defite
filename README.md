@@ -29,7 +29,7 @@ In both cases copy contents of `site` folder from the repository into your gatsb
 `gatsby-config.js` is a bit messy, but it's working and once you've configured it, you won't touch it anymore.
 
 ```
-const menu = require('./src/@defite/gatsby-theme-defite/langs/menu');
+const menu = require('./src/@defite/gatsby-theme-defite/langs/menuDict');
 const langs = Object.keys(menu);
 
 module.exports = {
@@ -66,7 +66,7 @@ The theme supports different languages. It also works with a single language.
 
 To support multiple languages you must follow steps:
 
-1) Open `src/@defite/gatsby-theme-defite/langs/menu.js` and add a new key for your language. On my page I use English and Russian:
+1) Open `src/@defite/gatsby-theme-defite/langs/menuDict.js` and add a new key for your language. On my page I use English and Russian:
 
 ```
 module.exports = {

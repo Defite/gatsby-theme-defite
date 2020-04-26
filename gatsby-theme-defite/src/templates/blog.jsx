@@ -1,29 +1,26 @@
 /** @jsx jsx */
-import { jsx } from 'theme-ui'
-import PropTypes from 'prop-types';
-import { Link, graphql } from 'gatsby';
-import Helmet from 'react-helmet';
-import { Styled } from 'theme-ui';
+import { jsx } from 'theme-ui';
+import { graphql } from 'gatsby';
+import { Helmet } from 'react-helmet';
 import styles from './blog.module.css';
 
+import Card from '../components/Card';
 import Layout from '../components/layout';
 import BlogPagination from '../components/BlogPagination';
-import langs from '../langs/menu';
+import langs from '../langs/menuDict';
 
 export const BlogIndex = (props) => {
 	const { data, location, pageContext } = props;
-	const { site, allMarkdownRemark, markdownRemark: page } = data;
+	const { site, allMarkdownRemark } = data;
 	const { description, title } = site.siteMetadata;
 	const posts = allMarkdownRemark.edges;
-	const {
-		langKey,
-		currentPage,
-		numPages,
-	} = pageContext;
+	const { langKey, currentPage, numPages } = pageContext;
 
 	const defaultLang = Object.keys(langs)[0];
 	const langPrefix = langKey === defaultLang ? '' : langKey;
-	const blogItemIndex = langs[langKey].menu.findIndex(item => item.link === 'blog');
+	const blogItemIndex = langs[langKey].menu.findIndex(
+		(item) => item.link === 'blog',
+	);
 	const blogTitle = langs[langKey].menu[blogItemIndex].text;
 	const authorName = langs[langKey].title || title;
 
@@ -35,57 +32,34 @@ export const BlogIndex = (props) => {
 				meta={[{ name: 'description', content: description }]}
 				title={`${blogTitle} | ${authorName}`}
 			/>
-			<div className="grid">
-				<div className="grid-inner">
-					<Styled.h1>{blogTitle}</Styled.h1>
-					<section className={styles.blogList}>
-						{posts.map(({ node }) => {
-							const customTitle = node.frontmatter.title || node.fields.slug;
-							return (
-								<div key={node.fields.slug}>
-									<Styled.h3
-										sx={{
-											marginBottom: '0.455rem',
-										}}
-									>
-										<Link style={{ boxShadow: 'none' }} to={node.frontmatter.path}>
-											{customTitle}
-										</Link>
-									</Styled.h3>
-									<small sx={{
-											marginBottom: '0.5rem',
-											marginTop: '-0.9rem',
-											display: 'block'
-									}}>{node.frontmatter.date}</small>
-									<Styled.p dangerouslySetInnerHTML={{ __html: node.frontmatter.excerpt }} />
-								</div>
-							);
-						})}
-					</section>
+			<div className="grid main">
+				<h1 sx={{ variant: 'styles.h2' }}>{blogTitle}</h1>
+				<section sx={{ variant: 'blog' }} className={styles.blogList}>
+					{posts.map(({ node }) => {
+						const { path, coverImg, title } = node.frontmatter;
+						const cover = coverImg ? coverImg.childImageSharp.fluid : null;
 
-					<BlogPagination
-						currentPage={currentPage}
-						numPages={numPages}
-						langPrefix={langPrefix}
-					/>
-				</div>
+						return (
+							<div className={styles.blogListItem} key={node.fields.slug}>
+								<Card link={path} title={title} image={cover} />
+							</div>
+						);
+					})}
+				</section>
+
+				<BlogPagination
+					currentPage={currentPage}
+					numPages={numPages}
+					langPrefix={langPrefix}
+				/>
 			</div>
 		</Layout>
 	);
 };
 
-/* eslint-disable react/forbid-prop-types */
-BlogIndex.defaultProps = {
-	location: {},
-};
-
-BlogIndex.propTypes = {
-	location: PropTypes.object,
-};
-
 export default BlogIndex;
 
-export const pageQuery = graphql`
+export const BlogIndexData = graphql`
 	query blogData($skip: Int!, $limit: Int!, $langKey: String!) {
 		site {
 			siteMetadata {
@@ -94,31 +68,37 @@ export const pageQuery = graphql`
 			}
 		}
 		allMarkdownRemark(
-				filter: { 
-					frontmatter: {
-						templateKey: { eq: "blog-post" },
-						published: { eq: true }
-					},
-					fields: { langKey: { eq: $langKey } },
+			filter: {
+				frontmatter: {
+					templateKey: { eq: "blog-post" }
+					published: { eq: true }
 				}
-				sort: { fields: [frontmatter___date], order: DESC }
-				limit: $limit
-				skip: $skip
-			) {
+				fields: { langKey: { eq: $langKey } }
+			}
+			sort: { fields: [frontmatter___date], order: DESC }
+			limit: $limit
+			skip: $skip
+		) {
 			edges {
 				node {
-					excerpt
 					fields {
 						slug
 						langKey
 					}
 					frontmatter {
-						date(formatString: "MMMM DD, YYYY", locale: $langKey)
+						date(formatString: "DD.MM.YY", locale: $langKey)
+						excerpt
 						title
 						templateKey
 						published
 						path
-						excerpt
+						coverImg {
+							childImageSharp {
+								fluid(maxWidth: 700) {
+									...GatsbyImageSharpFluid
+								}
+							}
+						}
 					}
 				}
 			}
