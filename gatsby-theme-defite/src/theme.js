@@ -130,6 +130,10 @@ export default {
 		h1: {
 			variant: 'styles.h2',
 		},
+		h3: {
+			variant: 'styles.h3',
+			marginTop: '1em',
+		},
 		postMeta: {
 			fontFamily: 'heading',
 			fontWeight: 0,
