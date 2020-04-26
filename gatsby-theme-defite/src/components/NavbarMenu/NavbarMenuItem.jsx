@@ -1,10 +1,14 @@
+/** @jsx jsx */
+import { jsx } from 'theme-ui';
+
 import React from 'react';
 import { Link } from 'gatsby';
+
 import LangContext from '../../context/langContext';
-import styles from './style.module.css';
+import styles from './navbarmenu.module.css';
 
 class MenuItem extends React.Component {
-	static contextType = LangContext
+	static contextType = LangContext;
 
 	render() {
 		const { link, text } = this.props;
@@ -17,7 +21,11 @@ class MenuItem extends React.Component {
 					onClick={() => {
 						document.body.classList.remove('menu-visible');
 					}}
-				>{text}
+					sx={{
+						variant: 'menu',
+					}}
+				>
+					{text}
 				</Link>
 			</li>
 		);

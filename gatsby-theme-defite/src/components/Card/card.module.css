@@ -1,0 +1,126 @@
+:root {
+	/* Card */
+	--card-black: 10, 10, 10;
+	--card-background-color: hsl(0, 0%, 100%);
+	--card-color: hsl(0, 0%, 29%);
+	--card-content-background-color: transparent;
+	--card-content-padding: 1.5rem;
+	--card-footer-background-color: transparent;
+	--card-footer-border-top: 1px solid hsl(0, 0%, 93%);
+	--card-footer-padding: 0.75rem;
+	--card-header-background-color: transparent;
+	--card-header-color: hsl(0, 0%, 21%);
+	--card-header-padding: 0.75rem 1rem;
+	--card-header-shadow: 0 0.125em 0.25em rgba(var(--card-black), 0.1);
+	--card-header-weight: 700;
+	--card-shadow: 0 0.5em 1em -0.125em rgba(var(--card-black), 0.1),
+		0 0px 0 1px rgba(var(--card-black), 0.02);
+}
+
+.card {
+	background-color: var(--card-background-color);
+	box-shadow: var(--card-shadow);
+	border-radius: .3rem;
+	color: var(--card-color);
+	max-width: 100%;
+	position: relative;
+	overflow: hidden;
+	line-height: 0;
+
+	/* @media (max-width: 900px) {
+		font-size: 80%;
+	} */
+}
+
+.card-header {
+	background-color: var(--card-header-background-color);
+	align-items: stretch;
+	box-shadow: var(--card-header-shadow);
+	display: flex;
+}
+
+.card-header-title {
+	align-items: center;
+	color: var(--card-header-color);
+	display: flex;
+	flex-grow: 1;
+	font-weight: var(--card-header-weight);
+	padding: var(--card-header-padding);
+
+	&.is-centered {
+		justify-content: center;
+	}
+}
+
+/* .card-title-link {	
+  color: var(--text-dark);
+} */
+
+.card-header-icon {
+	align-items: center;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	padding: var(--card-header-padding);
+}
+
+.card-figure {
+	margin: 0;
+}
+
+.card-image {
+	max-width: 100%;
+	line-height: 0;
+}
+
+.card-title {}
+
+.card-title-link {
+	text-decoration: none;
+	box-shadow: none;
+	color: var(--text-black)
+}
+
+.card-content {
+	background-color: var(--card-content-background-color);
+	padding: var(--card-content-padding);
+}
+
+.card-footer {
+	background-color: var(--card-footer-background-color);
+	border-top: var(--card-footer-border-top);
+	align-items: stretch;
+	display: flex;
+}
+
+.card-footer-item {
+	align-items: center;
+	display: flex;
+	flex-basis: 0;
+	flex-grow: 1;
+	flex-shrink: 0;
+	justify-content: center;
+	padding: var(--card-footer-padding);
+
+	&:not(:last-child) {
+		border-right: var(--card-footer-border-top);
+	}
+}
+
+.has-image {
+	& .card-title {
+		background: var(--text-link);
+		padding: .4rem;
+		display: inline-block;
+	}
+
+	& .card-title-link {
+		color: var(--text-white);
+	}
+
+	& .card-content {
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+}

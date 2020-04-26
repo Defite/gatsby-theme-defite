@@ -1,10 +1,12 @@
+/** @jsx jsx */
 import React from 'react';
-import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
+import { jsx } from 'theme-ui';
+import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
 
 import Layout from '../components/layout';
-import { Styled } from 'theme-ui';
+import plural from '../helpers/plural';
+import postDict from '../langs/postDict';
 import styles from './blog-post.module.css';
 
 export const BlogPostTemplate = (props) => {
@@ -15,14 +17,40 @@ export const BlogPostTemplate = (props) => {
 	const { title: siteTitle } = site.siteMetadata;
 	const siteDescription = post.excerpt;
 
-	const { langKey } = post.fields;
-
-	const errorTexts = {
-		en: 'Sorry, this post is not available, try another language.',
-		ru: 'Извините, этот пост еще не написан, попробуйте выбрать другой язык.',
-	};
+	const { langKey, readingTime } = post.fields;
 
 	const isPublished = published;
+
+	const renderReadingTime = () => {
+		if (!readingTime || !readingTime.minutes) {
+			return null;
+		}
+
+		const minutes = Math.ceil(readingTime.minutes);
+		const { cases, postfix, prefix } = postDict[langKey].timeRead;
+
+		return (
+			<React.Fragment>
+				<span className={styles.metaSeparator}> &mdash; </span>
+				<span>
+					{prefix} {minutes} {plural(minutes, cases)} {postfix}
+				</span>
+			</React.Fragment>
+		);
+	};
+
+	const renderSubtitleInfo = () => {
+		if (!isPublished) {
+			return null;
+		}
+
+		return (
+			<div className={styles.time} sx={{ variant: 'post.postMeta' }}>
+				<time>{date}</time>
+				{renderReadingTime()}
+			</div>
+		);
+	};
 
 	/* eslint-disable react/no-danger */
 	return (
@@ -35,27 +63,23 @@ export const BlogPostTemplate = (props) => {
 
 			<div className={styles.post}>
 				<header className={styles.header}>
-					<Styled.h1 className={styles.h1}>{title}</Styled.h1>
-					{isPublished && <time className={styles.time}>{date}</time>}
+					<h1
+						sx={{ variant: 'post.h1', marginBottom: '0.3em' }}
+						className={styles.h1}
+					>
+						{title}
+					</h1>
+					{renderSubtitleInfo()}
 				</header>
-				{isPublished
-					? (<div className={styles.article} dangerouslySetInnerHTML={{ __html: post.html }} />)
-					: (<div className={styles.article}><p>{errorTexts[langKey]}</p></div>)
-				}
+
+				<div
+					sx={{ variant: 'post' }}
+					className={styles.article}
+					dangerouslySetInnerHTML={{ __html: post.html }}
+				/>
 			</div>
 		</Layout>
 	);
-};
-
-/* eslint-disable react/forbid-prop-types */
-BlogPostTemplate.defaultProps = {
-	data: {},
-	location: {},
-};
-
-BlogPostTemplate.propTypes = {
-	data: PropTypes.object,
-	location: PropTypes.object,
 };
 
 export default BlogPostTemplate;
@@ -74,11 +98,14 @@ export const pageQuery = graphql`
 			html
 			fields {
 				langKey
+				readingTime {
+					minutes
+				}
 			}
 			frontmatter {
 				title
 				published
-				date(formatString: "MMMM DD, YYYY", locale: $langKey)
+				date(formatString: "DD.MM.YY", locale: $langKey)
 			}
 		}
 	}

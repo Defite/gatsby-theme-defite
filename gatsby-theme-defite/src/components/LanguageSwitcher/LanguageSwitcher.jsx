@@ -1,8 +1,11 @@
+/** @jsx jsx */
+import { jsx } from 'theme-ui';
+
 import React from 'react';
 import { Link } from 'gatsby';
 import styles from './style.module.css';
 import LangContext from '../../context/langContext';
-import langs from '../../langs/menu';
+import langs from '../../langs/menuDict';
 
 class LanguageSwitcher extends React.Component {
 	static contextType = LangContext;
@@ -14,19 +17,20 @@ class LanguageSwitcher extends React.Component {
 
 		return (
 			<span className={styles.switcher}>
-				{
-					langsAliases.map((alias, index) => {
-						return (
-							<Link
-								key={`lang-${index}`}
-								to={defaultLang === alias ? slug : alias + '/' + slug}
-								activeClassName={styles.active}
-							>
-								{alias}
-							</Link>
-						)
-					})
-				}
+				{langsAliases.map((alias, index) => {
+					return (
+						<Link
+							key={`lang-${index}`}
+							to={defaultLang === alias ? slug : alias + '/' + slug}
+							activeClassName={styles.active}
+							sx={{
+								variant: 'header.switcher',
+							}}
+						>
+							{alias}
+						</Link>
+					);
+				})}
 			</span>
 		);
 	}
