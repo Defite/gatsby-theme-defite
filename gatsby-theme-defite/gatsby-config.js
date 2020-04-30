@@ -10,7 +10,7 @@ module.exports = ({
 }) => ({
 	siteMetadata,
 	plugins: [
-		'gatsby-theme-ui',
+		'gatsby-plugin-theme-ui',
 		'gatsby-transformer-sharp',
 		'gatsby-plugin-sharp',
 		{
