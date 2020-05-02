@@ -1,13 +1,11 @@
 /** @jsx jsx */
+import React from 'react';
 import { jsx } from 'theme-ui';
 import { graphql } from 'gatsby';
-import Layout from '@defite/gatsby-theme-defite/src/components/layout';
 
-const NotFoundPage = ({ data, location }) => {
-	const siteTitle = data.site.siteMetadata.title;
-
+const NotFoundPage = () => {
 	return (
-		<Layout location={location} title={siteTitle} lang="ru">
+		<React.Fragment>
 			<div className="grid main">
 				<div className="grid-inner">
 					<h1 sx={{ variant: 'error404.h2' }}>
@@ -24,7 +22,7 @@ const NotFoundPage = ({ data, location }) => {
 					<p sx={{ variant: 'error404.p' }}>Этой страницы не существует</p>
 				</div>
 			</div>
-		</Layout>
+		</React.Fragment>
 	);
 };
 

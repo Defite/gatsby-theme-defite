@@ -1,19 +1,17 @@
 /** @jsx jsx */
+import React from 'react';
 import { jsx } from 'theme-ui';
 
-// import React from 'react';
-import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
 
 import langs from '../langs/menuDict';
-import Layout from '../components/layout';
 
 import styles from './resume.module.css';
 
 
 export const ResumeTemplate = (props) => {
-	const { data, pageContext, location } = props;
+	const { data, pageContext } = props;
 	const { markdownRemark: page, site } = data;
 	const { description, title } = site.siteMetadata;
 	const { pageType } = pageContext;
@@ -23,7 +21,7 @@ export const ResumeTemplate = (props) => {
 
 	/* eslint-disable react/no-danger */
 	return (
-		<Layout location={location} lang={langKey}>
+		<React.Fragment>
 			<Helmet
 				htmlAttributes={{ lang: langKey, class: `${pageType}` }}
 				meta={[{ name: 'description', content: siteDescription }]}
@@ -40,21 +38,8 @@ export const ResumeTemplate = (props) => {
 					/>
 				</div>
 			</div>
-		</Layout>
+		</React.Fragment>
 	);
-};
-
-/* eslint-disable react/forbid-prop-types */
-ResumeTemplate.defaultProps = {
-	data: {},
-	location: {},
-	pageContext: {},
-};
-
-ResumeTemplate.propTypes = {
-	data: PropTypes.object,
-	location: PropTypes.object,
-	pageContext: PropTypes.object,
 };
 
 export default ResumeTemplate;

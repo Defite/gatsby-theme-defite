@@ -4,14 +4,12 @@ import { jsx } from 'theme-ui';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
 
-import Layout from '../components/layout';
 import plural from '../helpers/plural';
 import postDict from '../langs/postDict';
 import styles from './blog-post.module.css';
 
 export const BlogPostTemplate = (props) => {
-	const { data, location } = props;
-	const { site, markdownRemark: post } = data;
+	const { site, markdownRemark: post } = props.data;
 	const { title, published, date } = post.frontmatter;
 
 	const { title: siteTitle } = site.siteMetadata;

@@ -10,8 +10,7 @@ import langs from '../langs/menuDict';
 import styles from './home.module.css';
 
 export const IndexPage = (props) => {
-	const { data, location } = props;
-	const { /*github,*/ markdownRemark: page, site } = data;
+	const { /*github,*/ markdownRemark: page, site } = props.data;
 	const { description, title } = site.siteMetadata;
 	const { langKey } = page.fields;
 	const authorName = langs[langKey].title || title;
