@@ -1,11 +1,11 @@
 /** @jsx jsx */
+import React from 'react';
 import { jsx } from 'theme-ui';
 import { graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import styles from './blog.module.css';
 
 import Card from '../components/Card';
-import Layout from '../components/layout';
 import BlogPagination from '../components/BlogPagination';
 import langs from '../langs/menuDict';
 
@@ -26,7 +26,7 @@ export const BlogIndex = (props) => {
 
 	/* eslint-disable react/no-danger */
 	return (
-		<Layout location={location} lang={langKey}>
+		<React.Fragment>
 			<Helmet
 				htmlAttributes={{ lang: langKey, class: 'blog' }}
 				meta={[{ name: 'description', content: description }]}
@@ -53,7 +53,7 @@ export const BlogIndex = (props) => {
 					langPrefix={langPrefix}
 				/>
 			</div>
-		</Layout>
+		</React.Fragment>
 	);
 };
 

@@ -1,10 +1,10 @@
 /** @jsx jsx */
+import React from 'react';
 import { jsx } from 'theme-ui';
 import { graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
 
 import langs from '../langs/menuDict';
-import Layout from '../components/layout';
 // import GithubRepoList from '../components/GithubRepoList';
 
 import styles from './home.module.css';
@@ -19,7 +19,7 @@ export const IndexPage = (props) => {
 
 	/* eslint-disable react/no-danger */
 	return (
-		<Layout location={location} lang={langKey}>
+		<React.Fragment>
 			<Helmet
 				htmlAttributes={{ lang: langKey, class: 'home' }}
 				meta={[{ name: 'description', content: description }]}
@@ -36,7 +36,7 @@ export const IndexPage = (props) => {
 					<GithubRepoList repositories={repos} lang={langKey} />
 				</section> */}
 			</div>
-		</Layout>
+		</React.Fragment>
 	);
 };
 
