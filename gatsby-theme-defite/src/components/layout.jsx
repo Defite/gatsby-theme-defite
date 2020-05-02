@@ -14,15 +14,14 @@ import Transition from './transition.js';
 import './layout.css';
 
 const Template = (props) => {
-	const { children, lang = 'ru', location } = props;
-
-	const defaultLang = Object.keys(menu)[0];
+	const { children, pageContext, location } = props;
+	const { defaultLang, langKey: lang } = pageContext;
 	const langPref = lang === defaultLang ? '' : `/${lang}`;
 
 	const state = {
-		defaultLang,
 		lang,
 		langPref,
+		defaultLang,
 	};
 
 	return (

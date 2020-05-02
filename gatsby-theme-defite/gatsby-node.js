@@ -24,6 +24,7 @@ exports.createPages = async ({ graphql, actions }, options) => {
 	const { createPage } = actions;
 	const blogPost = require.resolve('./src/templates/blog-post.jsx');
 	const postsPerPage = options.postsPerPage || 5;
+	const defaultLang = options.langs[0];
 
 	await graphql(`
 		{
@@ -61,7 +62,6 @@ exports.createPages = async ({ graphql, actions }, options) => {
 		const posts = edges.filter(
 			({ node }) => node.frontmatter.templateKey === 'blog-post',
 		);
-		const defaultLang = options.langs[0];
 
 		posts.forEach((post, index) => {
 			const previous =
@@ -78,6 +78,7 @@ exports.createPages = async ({ graphql, actions }, options) => {
 					previous,
 					next,
 					langKey: langKey === defaultLang ? '' : langKey,
+					defaultLang,
 				},
 			});
 		});
@@ -105,6 +106,7 @@ exports.createPages = async ({ graphql, actions }, options) => {
 						numPages,
 						currentPage: i + 1,
 						langKey: lang,
+						defaultLang,
 					},
 				});
 			});
@@ -128,6 +130,7 @@ exports.createPages = async ({ graphql, actions }, options) => {
 					slug: node.fields.slug,
 					pageType: node.frontmatter.templateKey,
 					langKey,
+					defaultLang,
 				},
 				component: require.resolve(`./src/templates/${templateName}.jsx`),
 			});

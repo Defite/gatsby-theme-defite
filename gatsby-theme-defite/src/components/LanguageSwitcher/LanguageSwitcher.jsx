@@ -11,8 +11,7 @@ class LanguageSwitcher extends React.Component {
 	static contextType = LangContext;
 
 	render() {
-		const { defaultLang, lang, location } = this.context;
-		// const slug = location.pathname.replace(`/${lang}/`, '/');
+		const { defaultLang } = this.context;
 		const langsAliases = Object.keys(langs);
 
 		return (
@@ -21,9 +20,10 @@ class LanguageSwitcher extends React.Component {
 					return (
 						<Link
 							key={`lang-${index}`}
-							// to={defaultLang === alias ? slug : '/' + alias + slug}
-							to={alias}
+							to={defaultLang === alias ? '/' : '/' + alias}
+							// to={`/${alias}`}
 							activeClassName={styles.active}
+							partiallyActive
 							sx={{
 								variant: 'header.switcher',
 							}}

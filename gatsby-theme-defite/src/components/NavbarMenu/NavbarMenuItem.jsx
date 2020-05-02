@@ -14,13 +14,12 @@ class MenuItem extends React.Component {
 		const { link, text } = this.props;
 		const { langPref } = this.context;
 
+		console.log('MenuItem', this.context);
+
 		return (
 			<li className={styles.item}>
 				<Link
 					to={`${langPref}/${link}`}
-					onClick={() => {
-						document.body.classList.remove('menu-visible');
-					}}
 					sx={{
 						variant: 'menu',
 					}}
