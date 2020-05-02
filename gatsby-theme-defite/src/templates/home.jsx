@@ -18,7 +18,7 @@ export const IndexPage = (props) => {
 
 	/* eslint-disable react/no-danger */
 	return (
-		<React.Fragment>
+		<div>
 			<Helmet
 				htmlAttributes={{ lang: langKey, class: 'home' }}
 				meta={[{ name: 'description', content: description }]}
@@ -35,7 +35,7 @@ export const IndexPage = (props) => {
 					<GithubRepoList repositories={repos} lang={langKey} />
 				</section> */}
 			</div>
-		</React.Fragment>
+		</div>
 	);
 };
 

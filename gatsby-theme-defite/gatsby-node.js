@@ -142,6 +142,19 @@ exports.onCreatePage = async ({ page, actions }, options) => {
 	const { createPage, deletePage } = actions;
 	const defaultLang = options.langs[0];
 
+	if (page.path.match(/offline-plugin-app-shell-fallback/)) {
+		const oldPage = { ...page };
+
+		page.context = {
+			defaultLang,
+			langKey: defaultLang,
+		};
+
+		// Recreate the modified page
+		deletePage(oldPage);
+		createPage(page);
+	}
+
 	// Check if the page is a localized 404
 	if (page.path.match(/^\/[a-z]{2}\/404\/$/)) {
 		const oldPage = { ...page };
