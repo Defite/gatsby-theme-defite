@@ -1,15 +1,13 @@
 /** @jsx jsx */
-
-import PropTypes from 'prop-types';
+import React from 'react';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
 import { jsx } from 'theme-ui';
 
 import langs from '../langs/menuDict';
-import Layout from '../components/layout';
 
 export const PageTemplate = (props) => {
-	const { data, pageContext, location } = props;
+	const { data, pageContext } = props;
 	const { markdownRemark: page, site } = data;
 	const { description, title } = site.siteMetadata;
 	const { pageType } = pageContext;
@@ -19,7 +17,7 @@ export const PageTemplate = (props) => {
 
 	/* eslint-disable react/no-danger */
 	return (
-		<Layout location={location} lang={langKey}>
+		<React.Fragment>
 			<Helmet
 				htmlAttributes={{ lang: langKey, class: `${pageType}` }}
 				meta={[{ name: 'description', content: siteDescription }]}
@@ -35,25 +33,15 @@ export const PageTemplate = (props) => {
 					>
 						{page.frontmatter.date}
 					</p>
-					<div sx={{ variant: 'styles' }} dangerouslySetInnerHTML={{ __html: page.html }} />
+					<div
+						sx={{ variant: 'styles' }}
+						dangerouslySetInnerHTML={{ __html: page.html }}
+					/>
 					<hr />
 				</div>
 			</div>
-		</Layout>
+		</React.Fragment>
 	);
-};
-
-/* eslint-disable react/forbid-prop-types */
-PageTemplate.defaultProps = {
-	data: {},
-	location: {},
-	pageContext: {},
-};
-
-PageTemplate.propTypes = {
-	data: PropTypes.object,
-	location: PropTypes.object,
-	pageContext: PropTypes.object,
 };
 
 export default PageTemplate;

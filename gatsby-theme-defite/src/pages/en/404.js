@@ -1,14 +1,11 @@
 /** @jsx jsx */
+import React from 'react';
 import { jsx } from 'theme-ui';
 import { graphql } from 'gatsby';
 
-import Layout from '../../components/layout';
-
-const NotFoundPage = ({ data, location }) => {
-	const siteTitle = data.site.siteMetadata.title;
-
+const NotFoundPage = () => {
 	return (
-		<Layout location={location} title={siteTitle} lang="en">
+		<React.Fragment>
 			<div className="grid main">
 				<div className="grid-inner">
 					<h1 sx={{ variant: 'error404.h2' }}>
@@ -25,7 +22,7 @@ const NotFoundPage = ({ data, location }) => {
 					<p sx={{ variant: 'error404.p' }}>This page was never here before</p>
 				</div>
 			</div>
-		</Layout>
+		</React.Fragment>
 	);
 };
 

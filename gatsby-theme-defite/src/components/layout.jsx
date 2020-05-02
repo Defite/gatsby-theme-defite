@@ -23,7 +23,6 @@ const Template = (props) => {
 		defaultLang,
 		lang,
 		langPref,
-		location,
 	};
 
 	return (

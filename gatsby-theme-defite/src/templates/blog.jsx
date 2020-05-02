@@ -10,7 +10,7 @@ import BlogPagination from '../components/BlogPagination';
 import langs from '../langs/menuDict';
 
 export const BlogIndex = (props) => {
-	const { data, location, pageContext } = props;
+	const { data, pageContext } = props;
 	const { site, allMarkdownRemark } = data;
 	const { description, title } = site.siteMetadata;
 	const posts = allMarkdownRemark.edges;
