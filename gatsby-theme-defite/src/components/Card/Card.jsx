@@ -19,7 +19,6 @@ const Card = ({ image, link, title }) => {
 
 		return (
 			<figure className={styles.cardFigure}>
-				{/* <img className={styles.cardImage} src={image} alt={title} /> */}
 				<CoverImage fluid={image} />
 			</figure>
 		);

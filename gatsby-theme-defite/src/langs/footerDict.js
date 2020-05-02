@@ -1,5 +1,5 @@
 module.exports = {
-    en: {
-        developed: 'Developed by John Doe'
-    }
-}
+	en: {
+		developed: 'Developed by John Doe',
+	},
+};
