@@ -73,7 +73,6 @@ module.exports = ({
 			resolve: 'gatsby-plugin-manifest',
 			options: manifestOptions,
 		},
-		'gatsby-plugin-offline',
 		'gatsby-plugin-react-helmet',
 		{
 			resolve: 'gatsby-plugin-prefetch-google-fonts',
@@ -119,5 +118,6 @@ module.exports = ({
 				component: require.resolve('./src/components/layout.jsx'),
 			},
 		},
+		'gatsby-plugin-offline',
 	],
 });

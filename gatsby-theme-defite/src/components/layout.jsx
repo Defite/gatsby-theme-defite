@@ -15,18 +15,21 @@ import './layout.css';
 
 const Template = (props) => {
 	const { children, pageContext, location } = props;
-	const { defaultLang, langKey: lang } = pageContext;
-	const langPref = lang === defaultLang ? '' : `/${lang}`;
+	const { defaultLang, langKey } = pageContext;
+	const langPref = langKey === defaultLang ? '' : `/${langKey}`;
 
-	const state = {
-		lang,
+	const langDefaultData = {
+		lang: langKey,
 		langPref,
 		defaultLang,
 	};
 
+	const currLang = menu[langKey] || menu[defaultLang];
+	const menuItems = currLang.menu || [];
+
 	return (
 		<Styled.root>
-			<LangContext.Provider value={state}>
+			<LangContext.Provider value={langDefaultData}>
 				<div className="wrapper">
 					<StaticQuery
 						query={graphql`
@@ -39,9 +42,6 @@ const Template = (props) => {
 							}
 						`}
 						render={() => {
-							const currLang = menu[lang];
-							const menuItems = currLang.menu || [];
-
 							return (
 								<Header>
 									<Navbar>
@@ -58,7 +58,7 @@ const Template = (props) => {
 					<Container className="main">
 						<Transition location={location}>{children}</Transition>
 					</Container>
-					<Footer lang={lang} />
+					<Footer lang={langKey} />
 				</div>
 			</LangContext.Provider>
 		</Styled.root>
