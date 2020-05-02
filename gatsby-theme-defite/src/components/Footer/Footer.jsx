@@ -6,7 +6,7 @@ import footerDict from '../../langs/footerDict';
 import styles from './style.module.css';
 
 const Footer = (props) => {
-	const { lang } = props;
+	const { lang = 'ru' } = props;
 	const developer = footerDict[lang].developer;
 
 	return (

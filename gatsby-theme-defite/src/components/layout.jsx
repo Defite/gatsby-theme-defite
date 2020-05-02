@@ -9,11 +9,12 @@ import NavbarBrand from './NavbarBrand';
 import NavbarMenu from './NavbarMenu';
 import { Styled } from 'theme-ui';
 import menu from '../langs/menuDict';
+import Transition from './transition.js';
 
 import './layout.css';
 
 const Template = (props) => {
-	const { children, lang, location } = props;
+	const { children, lang = 'ru', location } = props;
 
 	const defaultLang = Object.keys(menu)[0];
 	const langPref = lang === defaultLang ? '' : `/${lang}`;
@@ -55,7 +56,10 @@ const Template = (props) => {
 							);
 						}}
 					/>
-					<Container className="main">{children}</Container>
+
+					<Container className="main">
+						<Transition location={location}>{children}</Transition>
+					</Container>
 					<Footer lang={lang} />
 				</div>
 			</LangContext.Provider>

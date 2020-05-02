@@ -54,7 +54,7 @@ export const BlogPostTemplate = (props) => {
 
 	/* eslint-disable react/no-danger */
 	return (
-		<Layout location={location} lang={langKey}>
+		<React.Fragment>
 			<Helmet
 				htmlAttributes={{ lang: langKey, class: 'blog-post' }}
 				meta={[{ name: 'description', content: siteDescription }]}
@@ -78,7 +78,7 @@ export const BlogPostTemplate = (props) => {
 					dangerouslySetInnerHTML={{ __html: post.html }}
 				/>
 			</div>
-		</Layout>
+		</React.Fragment>
 	);
 };
 

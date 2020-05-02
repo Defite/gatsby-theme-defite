@@ -21,7 +21,7 @@ class LanguageSwitcher extends React.Component {
 					return (
 						<Link
 							key={`lang-${index}`}
-							to={defaultLang === alias ? slug : alias + '/' + slug}
+							to={defaultLang === alias ? slug : '/' + alias + slug}
 							activeClassName={styles.active}
 							sx={{
 								variant: 'header.switcher',
