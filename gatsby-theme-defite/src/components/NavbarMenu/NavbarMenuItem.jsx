@@ -7,14 +7,12 @@ import { Link } from 'gatsby';
 import LangContext from '../../context/langContext';
 import styles from './navbarmenu.module.css';
 
-class MenuItem extends React.Component {
+class NavbarMenuItem extends React.Component {
 	static contextType = LangContext;
 
 	render() {
 		const { link, text } = this.props;
 		const { langPref } = this.context;
-
-		console.log('MenuItem', this.context);
 
 		return (
 			<li className={styles.item}>
@@ -31,4 +29,4 @@ class MenuItem extends React.Component {
 	}
 }
 
-export default MenuItem;
+export default NavbarMenuItem;

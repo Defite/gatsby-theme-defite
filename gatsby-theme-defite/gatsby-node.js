@@ -150,6 +150,9 @@ exports.onCreatePage = async ({ page, actions }, options) => {
 		const langCode = page.path.split(`/`)[1];
 
 		page.matchPath = defaultLang === langCode ? '/*' : `/${langCode}/*`;
+		page.context.defaultLang = defaultLang;
+		page.context.langKey = langCode;
+
 		// Recreate the modified page
 		deletePage(oldPage);
 		createPage(page);
