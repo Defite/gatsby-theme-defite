@@ -1,5 +1,6 @@
 ---
 templateKey: blog-post
+category: blog
 path: "/en/blog/full-image-in-markdown"
 title: Full image in markdown
 excerpt: Хак для картинок на всю ширину экрана в Markdown

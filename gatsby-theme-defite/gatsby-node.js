@@ -43,6 +43,7 @@ exports.createPages = async ({ graphql, actions }, options) => {
 						html
 						frontmatter {
 							templateKey
+							category
 							path
 							title
 							published
@@ -58,11 +59,13 @@ exports.createPages = async ({ graphql, actions }, options) => {
 	`).then((result) => {
 		const { edges } = result.data.allMarkdownRemark;
 
-		// Create blog posts pages.
+		// Create blog posts pages
+		// 1. Filter blog posts
 		const posts = edges.filter(
 			({ node }) => node.frontmatter.templateKey === 'blog-post',
 		);
 
+		// 2. Create blog post pages
 		posts.forEach((post, index) => {
 			const previous =
 				index === posts.length - 1 ? null : posts[index + 1].node;
@@ -83,52 +86,73 @@ exports.createPages = async ({ graphql, actions }, options) => {
 			});
 		});
 
-		// Create blog post list pages
-		options.langs.forEach((lang) => {
-			const langPrefix = lang === defaultLang ? '' : `${lang}/`;
+		const categories = edges.reduce((result, { node }) => {
+			const category = node.frontmatter.category;
+			if (category && result.indexOf(category) === -1) {
+				result.push(category);
+			}
+			return result;
+		}, []);
 
-			const blogPosts = edges.filter(
-				({ node }) =>
-					node.frontmatter.templateKey === 'blog-post' &&
-					node.fields.langKey === lang &&
-					node.frontmatter.published,
-			);
+		// Create blog post listing pages
 
-			const numPages = Math.ceil(blogPosts.length / postsPerPage);
+		// 1. Loop categories
+		categories.forEach((category) => {
+			// 2. Loop languages
+			options.langs.forEach((lang) => {
+				const langPrefix = lang === defaultLang ? '' : `${lang}/`;
 
-			Array.from({ length: numPages }).forEach((_, i) => {
-				createPage({
-					path: i === 0 ? `${langPrefix}blog` : `${langPrefix}blog/${i + 1}`,
-					component: require.resolve('./src/templates/blog.jsx'),
-					context: {
-						limit: postsPerPage,
-						skip: i * postsPerPage,
-						numPages,
-						currentPage: i + 1,
-						langKey: lang,
-						defaultLang,
-					},
+				const blogPosts = edges.filter(
+					({ node }) =>
+						node.frontmatter.templateKey === 'blog-post' &&
+						node.fields.langKey === lang &&
+						node.frontmatter.published &&
+						node.frontmatter.category === category,
+				);
+
+				const numPages = Math.ceil(blogPosts.length / postsPerPage);
+
+				Array.from({ length: numPages }).forEach((_, i) => {
+					createPage({
+						path:
+							i === 0
+								? `${langPrefix}${category}/`
+								: `${langPrefix}${category}/${i + 1}/`,
+						component: require.resolve('./src/templates/blog.jsx'),
+						context: {
+							limit: postsPerPage,
+							skip: i * postsPerPage,
+							category: category,
+							numPages,
+							currentPage: i + 1,
+							langKey: lang,
+							defaultLang,
+						},
+					});
 				});
 			});
 		});
 
-		result.data.allMarkdownRemark.edges.map(({ node }) => {
+		// Create any other page
+		edges.map(({ node }) => {
+			const { path, templateKey } = node.frontmatter;
+
 			if (!node.fields) {
 				return false;
 			}
 
-			const templateName = String(node.frontmatter.templateKey);
-			const { langKey } = node.fields;
-
-			if (node.frontmatter.templateKey === 'blog') {
+			if (templateKey === 'blog') {
 				return false;
 			}
 
+			const templateName = String(templateKey);
+			const { langKey, slug } = node.fields;
+
 			return createPage({
-				path: node.frontmatter.path,
+				path: path,
 				context: {
-					slug: node.fields.slug,
-					pageType: node.frontmatter.templateKey,
+					slug,
+					pageType: templateKey,
 					langKey,
 					defaultLang,
 				},

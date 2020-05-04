@@ -8,15 +8,7 @@ module.exports = {
 			},
 			{
 				text: 'Заметки',
-				link: 'blog',
-			},
-			{
-				text: 'Обо мне',
-				link: 'blog',
-			},
-			{
-				text: 'Контакты',
-				link: 'blog',
+				link: 'notes',
 			},
 		],
 	},
@@ -26,7 +18,11 @@ module.exports = {
 			{
 				text: 'Blog',
 				link: 'blog',
-			}
+			},
+			{
+				text: 'Notes',
+				link: 'notes',
+			},
 		],
 	},
 };
