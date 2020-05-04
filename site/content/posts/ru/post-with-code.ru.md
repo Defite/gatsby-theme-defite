@@ -1,5 +1,6 @@
 ---
 templateKey: blog-post
+category: blog
 path: /blog/post-with-code
 title: Пример текста с кодом
 excerpt: Код из markdown-файла и iframe

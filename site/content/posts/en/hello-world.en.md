@@ -1,5 +1,6 @@
 ---
 templateKey: blog-post
+category: notes
 path: /en/blog/hello-world
 title: Hello world
 excerpt: console.log('Hello world');
