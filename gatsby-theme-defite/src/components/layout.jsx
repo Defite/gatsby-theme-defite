@@ -5,6 +5,7 @@ import Container from '../components/Container';
 import Header from './Header';
 import Footer from './Footer';
 import Navbar from './Navbar';
+import NarbarBurger from './NavbarBurger';
 import NavbarBrand from './NavbarBrand';
 import NavbarMenu from './NavbarMenu';
 import { Styled } from 'theme-ui';
@@ -13,7 +14,7 @@ import Transition from './transition.js';
 
 import './layout.css';
 
-const Template = (props) => {
+const Layout = (props) => {
 	const { children, pageContext, location } = props;
 	const { defaultLang, langKey } = pageContext;
 	const langPref = langKey === defaultLang ? '' : `/${langKey}`;
@@ -45,8 +46,10 @@ const Template = (props) => {
 							return (
 								<Header>
 									<Navbar>
-										<NavbarBrand langPrefix={langPref}>
-											{currLang.title}
+										<NavbarBrand title={currLang.title} langPrefix={langPref}>
+											<Transition location={location} timeout={100}>
+												<NarbarBurger />
+											</Transition>
 										</NavbarBrand>
 										<NavbarMenu items={menuItems} />
 									</Navbar>
@@ -65,4 +68,4 @@ const Template = (props) => {
 	);
 };
 
-export default Template;
+export default Layout;

@@ -7,10 +7,6 @@
   background: none;
 }
 
-.navbar-burger-wrap {
-  margin-left: auto;
-}
-
 .navbar-burger span {
   background-color: currentColor;
   display: block;

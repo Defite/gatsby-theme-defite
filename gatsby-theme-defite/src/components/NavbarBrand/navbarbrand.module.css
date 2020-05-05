@@ -2,6 +2,10 @@
   align-items: stretch;
   display: flex;
   flex-shrink: 0;
+
+  & > div:last-child {
+    margin-left: auto;
+  }
 }
 
 .logo {
