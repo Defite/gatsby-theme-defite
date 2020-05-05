@@ -43,7 +43,7 @@ const NavbarBurger = () => {
 	});
 
 	return (
-		<Breakpoints className={styles.navbarBurgerWrap} visible={['touch']}>
+		<Breakpoints visible={['touch']}>
 			<button
 				className={rootBtnClass}
 				aria-label="menu"
