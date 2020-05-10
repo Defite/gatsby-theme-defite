@@ -1,0 +1,52 @@
+.blog-list {
+  margin: 0;
+  grid-column: 1/13;
+  display: flex;
+  flex-flow: row wrap;
+
+  @media (max-width: 1024px) and (min-width: 768px) {
+    font-size: 90%
+  }
+}
+
+.blog-list-item {
+  width: 50%;
+  padding-right: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-sizing: border-box;
+
+  @media (max-width: 767px) {
+    width: 100%;
+    padding: 0;
+  }
+
+  & > div {
+    height: 100%;
+  }
+}
+
+.title-link {
+  color: var(--text-dark);
+  box-shadow: none;
+
+  &:hover {
+    box-shadow: 0 1px 0 0 currentColor;
+  }
+}
+
+.post {
+  margin-bottom: 40px;
+}
+
+.pubdate {
+  display: block;
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  color: rgb(142, 147, 155);
+}
+
+.blog-list h3 {
+  line-height: 1.5em;
+}

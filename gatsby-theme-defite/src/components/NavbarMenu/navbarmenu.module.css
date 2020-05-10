@@ -1,0 +1,135 @@
+.navbar-menu {
+  align-items: stretch;
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+
+  @media (max-width: 767px) {
+    /* background-color: rgba(0, 0, 0, 0.8); */
+    background-color: var(--text-white);
+    box-shadow: 0px 20px 16px -10px rgba(10,10,10,.1);
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    overflow: hidden;
+    margin-top: 5rem;
+    padding: 0 5%;
+    box-sizing: border-box;
+    z-index: 3;
+
+
+    & ul {
+      padding: 0;
+    }
+  }
+}
+
+:global(.is-active) .navbar-menu {
+  @media (max-width: 767px) {
+    opacity: 1;
+    visibility: visible;
+    transition: 0.5s ease-in-out;
+  }
+}
+
+:global(.is-closed) .navbar-menu {
+  @media (max-width: 767px) {
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.5s ease-in-out;
+  }
+}
+
+.navbar-start,
+.navbar-end {
+  align-items: stretch;
+  display: flex;
+}
+
+.navbar-start {
+  justify-content: flex-start;
+  margin-right: auto;
+}
+
+.navbar-end {
+  justify-content: flex-end;
+  margin-left: auto;
+
+  @media (max-width: 767px) {
+    align-items: flex-start;
+  }
+}
+
+.navbar-menu .item {
+    display: inline-block;
+    margin-right: 2rem;
+    margin-bottom: 0;
+
+    & a {
+      color: var(--text-grey);
+    }
+
+    @media (max-width: 767px) {
+      margin-bottom: 1em;
+      opacity: 0;
+      transition-property: opacity, transform;
+      transition-duration: 0.3s;
+      transition-timing-function: cubic-bezier(0.6, 0, 0.8, 1.5);
+      transform: translateY(50px);
+    }
+}
+
+@media (max-width: 767px) {
+  /* Menu items animation, up to 10 elements */
+  :global(.is-active) .navbar-menu .item {
+    opacity: 1;
+    transform: translateY(0px);
+
+    &:nth-child(1) {
+      transition-delay: 0.1s;
+    }
+
+    &:nth-child(2) {
+      transition-delay: 0.2s;
+    }
+
+    &:nth-child(3) {
+      transition-delay: 0.3s;
+    }
+
+    &:nth-child(4) {
+      transition-delay: 0.4s;
+    }
+
+    &:nth-child(5) {
+      transition-delay: 0.5s;
+    }
+
+    &:nth-child(6) {
+      transition-delay: 0.6s;
+    }
+
+    &:nth-child(7) {
+      transition-delay: 0.7s;
+    }
+
+    &:nth-child(8) {
+      transition-delay: 0.8s;
+    }
+
+    &:nth-child(9) {
+      transition-delay: 0.9s;
+    }
+
+    &:nth-child(10) {
+      transition-delay: 1s;
+    }
+  }
+}
+
+

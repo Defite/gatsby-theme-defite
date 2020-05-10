@@ -1,5 +1,6 @@
 ---
 templateKey: blog-post
+category: notes
 path: /blog/post-with-images
 title: Post with images
 excerpt: Тестовый пост с картинками

@@ -4,7 +4,7 @@ path: "/blog/full-image-in-markdown"
 title: Картинка на всю ширину в Markdown
 excerpt: Хак для картинок на всю ширину экрана в Markdown
 date: 2019-02-03T18:35:00.000+00:00
-published: true
+published: false
 
 ---
 Небольшой хак для тех, кто хочет делать посты с картинками во всю ширину экрана как было модно на [medium.com](https://medium.com). 

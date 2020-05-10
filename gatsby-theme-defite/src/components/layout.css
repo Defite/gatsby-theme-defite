@@ -1,6 +1,29 @@
+:root {
+    --black: hsl(0, 0%, 4%);
+    --text-info: hsl(204, 86%, 53%);
+    --text-link: hsl(217, 71%, 53%);
+    --text-dark: hsl(0, 0%, 21%);
+    --text-grey-dark: hsl(0, 0%, 45%);
+    --text-grey: hsl(0, 0%, 40%);
+    --text-grey-lighter: hsl(0, 0%, 86%);
+    --text-primary: hsl(171, 100%, 41%);
+    --text-white: hsl(0, 0%, 100%);
+    --footer-background-color: hsl(0, 0%, 98%);
+}
+
+::selection {
+    background-color: var(--text-primary);
+    color: var(--text-white);
+}
+
 body {
     color: #3e3e3e;
     font-size: 100%;
+    margin: 0;
+
+    @media (max-width: 767px) {
+      font-size: 80%;
+    }
 }
 
 html {
@@ -9,15 +32,18 @@ html {
 }
 
 .wrapper {
-    margin: 0 auto;
-    padding: 1.5em 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}
 
-    backface-visibility: hidden;
-    transition: transform 0.5s ease;
+.main {
+    margin-bottom: auto;
 }
 
 a {
-    color: #375c85;
+    color: var(--text-link);
     text-decoration: none;
     box-shadow: 0 1px 0 0 currentColor;
 
@@ -36,7 +62,7 @@ h3 {
 }
 
 .grid-inner {
-    grid-column: 2 / 12;
+    grid-column: 1 / 12;
     @media (max-width: 425px) {
         grid-column: 1 / 13;
     }
@@ -44,7 +70,7 @@ h3 {
 
 .blog {
     & .grid-inner {
-        grid-column: 2 / 10;
+        grid-column: 1 / 10;
 
         @media (max-width: 425px) {
             grid-column: 1 / 13;
@@ -57,37 +83,6 @@ h3 {
         grid-column: 1 / 12;
         @media (max-width: 425px) {
             grid-column: 1 / 13;
-        }
-    }
-}
-@media (max-width: 768px) {
-    body {
-        font-size: 80%;
-    }
-
-    .header {
-        & h3 {
-            grid-column: 1 / 4;
-        }
-    }
-}
-
-@media (max-width: 690px) {
-    body.menu-visible {
-        & nav {
-            transform: translateX(0);
-        }
-
-        & .wrapper {
-            &:after {
-                content: ' ';
-                width: 100vw;
-                height: 100%;
-                position: fixed;
-                top: 0;
-                right: 0;
-                background: rgba(0, 0, 0, 0.3)
-            }
         }
     }
 }

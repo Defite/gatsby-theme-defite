@@ -1,0 +1,16 @@
+.navbar,
+.navbarContainer {
+  align-items: stretch;
+  display: flex;
+  width: 100%;
+}
+
+.navbarContainer {
+  @media (max-width: 1500px) {
+    width: 90%;
+  }
+
+  @media (max-width: 767px) {
+    display: block;
+  }
+}
