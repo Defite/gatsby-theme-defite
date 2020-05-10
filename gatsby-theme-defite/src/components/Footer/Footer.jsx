@@ -8,12 +8,15 @@ import styles from './style.module.css';
 const Footer = (props) => {
 	const { lang } = props;
 	const developer = footerDict[lang].developer;
+	const currentDate = new Date();
+	const currentYear = currentDate.getFullYear();
+
 
 	return (
 		<footer className={styles.footer}>
 			<Container>
 				<div sx={{ variant: 'footer.text' }}>
-					&copy; 2019 &mdash; 2020 {developer}
+					&copy; {currentYear} {developer}
 				</div>
 			</Container>
 		</footer>

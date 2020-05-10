@@ -1,8 +1,8 @@
 module.exports = {
 	en: {
-		developer: 'Developed by Defite',
+		developer: 'Defite',
 	},
 	ru: {
-		developer: 'Разработано Defite',
+		developer: 'Defite',
 	},
 };
