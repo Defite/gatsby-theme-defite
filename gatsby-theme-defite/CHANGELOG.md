@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/Defite/gatsby-theme-defite/compare/v2.0.0...v2.0.1) (2020-05-21)
+
+
+### Bug Fixes
+
+* **post:** global -> local styles ([24f2c70](https://github.com/Defite/gatsby-theme-defite/commit/24f2c70d53921a8fa038d849b44588991ca0362e))
+
+### [1.1.3](https://github.com/Defite/gatsby-theme-defite/compare/v1.1.2...v1.1.3) (2020-01-05)
+
+### [1.1.2](https://github.com/Defite/gatsby-theme-defite/compare/v1.1.1...v1.1.2) (2020-01-03)
+
+### [1.1.1](https://github.com/Defite/gatsby-theme-defite/compare/v1.1.0...v1.1.1) (2020-01-03)
+
+## [1.1.0](https://github.com/Defite/gatsby-theme-defite/compare/v1.0.1...v1.1.0) (2020-01-03)
+
+### [1.0.1](https://github.com/Defite/gatsby-theme-defite/compare/v1.0.0...v1.0.1) (2019-12-04)
+
 ## [2.0.0](https://github.com/Defite/gatsby-theme-defite/compare/v1.0.0...v2.0.0) (2020-05-10)
 
 
