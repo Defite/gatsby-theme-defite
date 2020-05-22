@@ -26,6 +26,7 @@ module.exports = ({
 							withWebp: {
 								quality: 75,
 							},
+							linkImagesToOriginal: false,
 						},
 					},
 					{
