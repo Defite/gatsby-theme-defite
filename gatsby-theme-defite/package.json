@@ -8,9 +8,9 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "clean": "gatsby clean",
-    "major": "standart-version -- --release-as major",
-    "minor": "standart-version -- --release-as minor",
-    "patch": "standart-version -- --release-as patch"
+    "major": "standard-version -- --release-as major",
+    "minor": "standard-version -- --release-as minor",
+    "patch": "standard-version -- --release-as patch"
   },
   "peerDependencies": {
     "gatsby": "^2.18.1",
