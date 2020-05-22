@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/Defite/gatsby-theme-defite/compare/v2.0.1...v2.1.0) (2020-05-22)
+
+
+### Features
+
+* **gatsby-config:** remove link to image original ([1a527cf](https://github.com/Defite/gatsby-theme-defite/commit/1a527cf59b2755cc7844c671eab431969028f600))
+
+
+### Bug Fixes
+
+* **package.json:** command misspell ([e6bb7b1](https://github.com/Defite/gatsby-theme-defite/commit/e6bb7b1e1d90b1157f85ceb9da6320e7489fe006))
+
 ### [2.0.1](https://github.com/Defite/gatsby-theme-defite/compare/v2.0.0...v2.0.1) (2020-05-21)
 
 
