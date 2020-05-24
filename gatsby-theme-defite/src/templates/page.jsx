@@ -4,16 +4,12 @@ import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
 import { jsx } from 'theme-ui';
 
-import langs from '../langs/menuDict';
-
 export const PageTemplate = (props) => {
 	const { data, pageContext } = props;
-	const { markdownRemark: page, site } = data;
-	const { description, title } = site.siteMetadata;
-	const { pageType } = pageContext;
-	const siteDescription = page.excerpt || description;
+	const { page } = data;
+	const { siteMeta, pageType } = pageContext;
+	const siteDescription = page.excerpt || siteMeta.description;
 	const { langKey } = page.fields;
-	const authorName = langs[langKey].title || title;
 
 	/* eslint-disable react/no-danger */
 	return (
@@ -21,7 +17,7 @@ export const PageTemplate = (props) => {
 			<Helmet
 				htmlAttributes={{ lang: langKey, class: `${pageType}` }}
 				meta={[{ name: 'description', content: siteDescription }]}
-				title={`${page.frontmatter.title} | ${authorName}`}
+				title={`${page.frontmatter.title} | ${siteMeta.title}`}
 			/>
 			<div className="grid">
 				<div className="grid-inner">
@@ -48,13 +44,7 @@ export default PageTemplate;
 
 export const pageQuery = graphql`
 	query PageBySlug($path: String!) {
-		site {
-			siteMetadata {
-				title
-				author
-			}
-		}
-		markdownRemark(frontmatter: { path: { eq: $path } }) {
+		page: markdownRemark(frontmatter: { path: { eq: $path } }) {
 			id
 			excerpt
 			html

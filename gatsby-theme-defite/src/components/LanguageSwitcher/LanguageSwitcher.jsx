@@ -1,39 +1,37 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
 
-import React from 'react';
+import { useContext } from 'react';
 import { Link } from 'gatsby';
 import styles from './style.module.css';
 import LangContext from '../../context/langContext';
-import langs from '../../langs/menuDict';
 
-class LanguageSwitcher extends React.Component {
-	static contextType = LangContext;
+const LanguageSwitcher = () => {
+	const { defaultLang, lang, langs } = useContext(LangContext);
 
-	render() {
-		const { defaultLang, lang } = this.context;
-		const langsAliases = Object.keys(langs);
-
-		return (
-			<span className={styles.switcher}>
-				{langsAliases.map((alias, index) => {
-					return (
-						<Link
-							key={`lang-${index}`}
-							to={defaultLang === alias ? '/' : '/' + alias}
-							activeClassName={styles.active}
-							partiallyActive={lang === alias}
-							sx={{
-								variant: 'header.switcher',
-							}}
-						>
-							{alias}
-						</Link>
-					);
-				})}
-			</span>
-		);
+	if (!langs || langs.length < 2) {
+		return null;
 	}
+
+	return (
+		<span className={styles.switcher}>
+			{langs.map((alias, index) => {
+				return (
+					<Link
+						key={`lang-${index}`}
+						to={defaultLang === alias ? '/' : '/' + alias}
+						activeClassName={styles.active}
+						partiallyActive={lang === alias}
+						sx={{
+							variant: 'header.switcher',
+						}}
+					>
+						{alias}
+					</Link>
+				);
+			})}
+		</span>
+	);
 }
 
 export default LanguageSwitcher;

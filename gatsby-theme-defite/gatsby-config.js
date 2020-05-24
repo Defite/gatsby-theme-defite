@@ -1,6 +1,4 @@
 const postcssPresetEnv = require('postcss-preset-env');
-// const fetch = require('node-fetch');
-// const { createHttpLink } = require('apollo-link-http');
 
 module.exports = ({
 	contentPath = '/content/',
@@ -17,7 +15,6 @@ module.exports = ({
 			resolve: 'gatsby-transformer-remark',
 			options: {
 				plugins: [
-					// 'gatsby-remark-unwrap-images',
 					'gatsby-remark-relative-source',
 					{
 						resolve: 'gatsby-remark-images',

@@ -9,14 +9,12 @@ import postDict from '../langs/postDict';
 import styles from './blog-post.module.css';
 
 export const BlogPostTemplate = (props) => {
-	const { site, markdownRemark: post } = props.data;
+	const { pageContext } = props;
+	const { siteMeta } = pageContext;
+	const { post } = props.data;
 	const { title, published, date } = post.frontmatter;
-
-	const { title: siteTitle } = site.siteMetadata;
 	const siteDescription = post.excerpt;
-
 	const { langKey, readingTime } = post.fields;
-
 	const isPublished = published;
 
 	const renderReadingTime = () => {
@@ -56,7 +54,7 @@ export const BlogPostTemplate = (props) => {
 			<Helmet
 				htmlAttributes={{ lang: langKey, class: 'blog-post' }}
 				meta={[{ name: 'description', content: siteDescription }]}
-				title={`${title} | ${siteTitle}`}
+				title={`${title} | ${siteMeta.title}`}
 			/>
 
 			<div className={styles.post}>
@@ -84,13 +82,7 @@ export default BlogPostTemplate;
 
 export const pageQuery = graphql`
 	query BlogPostBySlug($langKey: String!, $path: String!) {
-		site {
-			siteMetadata {
-				title
-				author
-			}
-		}
-		markdownRemark(frontmatter: { path: { eq: $path } }) {
+		post: markdownRemark(frontmatter: { path: { eq: $path } }) {
 			id
 			excerpt
 			html

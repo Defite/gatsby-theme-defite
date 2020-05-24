@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
 
 import LanguageSwitcher from '../LanguageSwitcher';
 import NavbarMenuItem from './NavbarMenuItem';
@@ -7,35 +8,63 @@ import NavbarItem from '../NavbarItem';
 import styles from './navbarmenu.module.css';
 import LangContext from '../../context/langContext';
 
-class NavbarMenu extends React.Component {
-	static contextType = LangContext;
+const NavbarMenu = () => {
+	const { lang } = useContext(LangContext);
 
-	render() {
-		const { items } = this.props;
-		const { lang } = this.context;
+	const data = useStaticQuery(graphql`
+		query MenuQuery {
+			menu: allMarkdownRemark(
+				sort: { fields: [frontmatter___menuOrder], order: ASC }
+				filter: {
+					frontmatter: {
+						templateKey: { ne: "blog-post" }
+						showInMenu: { eq: true }
+					}
+				}
+				limit: 1000
+			) {
+				edges {
+					node {
+						frontmatter {
+							path
+							title
+						}
+						fields {
+							langKey
+						}
+					}
+				}
+			}
+		}
+	`);
 
-		return (
-			<div className={styles.navbarMenu}>
-				<div className={styles.navbarStart}>
-					<ul>
-						{items.map((item, index) => (
-							<NavbarMenuItem
-								link={item.link}
-								text={item.text}
-								lang={lang}
-								key={`menu-item-${index}`}
-							/>
-						))}
-					</ul>
-				</div>
-				<div className={styles.navbarEnd}>
-					<NavbarItem>
-						<LanguageSwitcher />
-					</NavbarItem>
-				</div>
+	const { edges: menuItems } = data.menu;
+
+	const langMenuItems = menuItems
+		.filter((item) => {
+			return item.node.fields.langKey === lang;
+		})
+		.map((item, index) => (
+			<NavbarMenuItem
+				link={item.node.frontmatter.path}
+				text={item.node.frontmatter.title}
+				lang={lang}
+				key={`menu-item-${index}`}
+			/>
+		));
+
+	return (
+		<div className={styles.navbarMenu}>
+			<div className={styles.navbarStart}>
+				<ul>{langMenuItems}</ul>
 			</div>
-		);
-	}
-}
+			<div className={styles.navbarEnd}>
+				<NavbarItem>
+					<LanguageSwitcher />
+				</NavbarItem>
+			</div>
+		</div>
+	);
+};
 
 export default NavbarMenu;

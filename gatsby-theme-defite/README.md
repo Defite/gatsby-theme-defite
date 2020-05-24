@@ -1,6 +1,6 @@
 # Gatsby theme for Defite.ru
 
-![Gatsby theme for Defite.ru](https://user-images.githubusercontent.com/299118/70140860-ba0cba80-16a6-11ea-82c2-f28a865487c5.png)
+![Gatsby theme for Defite.ru](https://user-images.githubusercontent.com/299118/82766238-0d75ef00-9e26-11ea-9a93-4c46a384273d.png)
 
 **[Preview live site](https://defite.ru/en/)**
 
@@ -29,9 +29,6 @@ In both cases copy contents of `site` folder from the repository into your gatsb
 `gatsby-config.js` is a bit messy, but it's working and once you've configured it, you won't touch it anymore.
 
 ```
-const menu = require('./src/@defite/gatsby-theme-defite/langs/menuDict');
-const langs = Object.keys(menu);
-
 module.exports = {
     plugins: [
         {
@@ -39,21 +36,22 @@ module.exports = {
             options: {
                 contentPath: '/content/', //root folder for posts and pages
                 siteMetadata: {
-                    title: 'Nikita Makhov',
-                    author: 'Nikita Makhov',
-                    description: 'Frontend developer blog',
-                    siteUrl: 'https://defite.ru',
+                    en: {
+                      title: 'John Doe',
+                      description: 'Another Gatsby site',
+                    },
+                    siteUrl: 'https://another-gatsby-site.com',
                 },
                 manifestOptions: {
-                    name: 'Nikita Makhov',
-                    short_name: 'Defite.ru',
+                    name: 'John Doe',
+                    short_name: 'John Doe',
                     start_url: '/',
                     background_color: '#ffffff',
                     theme_color: '#663399',
                     display: 'minimal-ui',
                     icon: 'assets/gatsby-icon.png'
                 },
-                langs // your menu, title of page etc.
+                langs: ['en'] // your menu, title of page etc.
             }
         }
     ]
@@ -64,55 +62,18 @@ module.exports = {
 
 The theme supports different languages. It also works with a single language.
 
-To support multiple languages you must follow steps:
+To support multiple languages you must add your language to `langs` array in `gatsby-config.js`. First item in the array will be your default language and also it will be shown on on `/` url.
 
-1) Open `src/@defite/gatsby-theme-defite/langs/menuDict.js` and add a new key for your language. On my page I use English and Russian:
+## Menu
 
-```
-module.exports = {
-	ru: {
-		title: 'Никита Махов',
-		menu: [
-			{
-				text: 'Главная',
-				link: '/',
-			},
-			{
-				text: 'Блог',
-				link: 'blog',
-			},
-			{
-				text: 'Обо мне',
-				link: 'about',
-			},
-			{
-				text: 'Резюме',
-				link: 'cv',
-			},
-		],
-	},
-	en: {
-		title: 'Nikita Makhov',
-		menu: [
-			{
-				text: 'Home',
-				link: '/',
-			},
-			{
-				text: 'Blog',
-				link: 'blog',
-			},
-			{
-				text: 'About',
-				link: 'about',
-			},
-		],
-	},
-};
+Menu is created automatically from your pages. You can control order of menu items and which page to show.
 
 ```
-
-Fist language in this file will be the default for the system and will be shown on `/` urls. The other (in my case it is English) will be shown on `/en/` url.
+---
+showInMenu: true // false to not to show 
+menuOrder: 2
+---
+```
 
 ### Translate pages
 
@@ -121,8 +82,8 @@ To translate the page for both English and Russian, I've created two Markdown pa
 ```
 - content
   - pages
-    home.en.md
-    home.ru.md
+      - home.en.md
+      = home.ru.md
 ```
 
 Insude `home.en.md` you will find this:
@@ -162,8 +123,8 @@ I did this not to create chaos inside the posts directory. I hope it will fit ev
 
 Inside `hello-worlds.ru.md` you'll find:
 
- ```
- ---
+```
+---
 templateKey: blog-post
 path: /blog/hello-world
 title: Hello world
@@ -176,3 +137,17 @@ published: true
 `published` key is for making published or draft posts. It is convenient for systems like [Forestry](https://forestry.io).
 
 `excerpt` key is for making short descriptions of the post in the blog listing page.
+
+### Post preview image
+
+![Post preview image](https://user-images.githubusercontent.com/299118/82766167-6ee98e00-9e25-11ea-9358-3e61f9909ba0.png)
+
+In order to add preview image for post, add `coverImg` key to markdown:
+
+```
+---
+coverImg: /uploads/your-cover-image.jpg
+---
+```
+
+

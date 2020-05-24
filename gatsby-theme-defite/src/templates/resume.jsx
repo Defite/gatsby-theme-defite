@@ -5,19 +5,14 @@ import { jsx } from 'theme-ui';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
 
-import langs from '../langs/menuDict';
-
 import styles from './resume.module.css';
-
 
 export const ResumeTemplate = (props) => {
 	const { data, pageContext } = props;
-	const { markdownRemark: page, site } = data;
-	const { description, title } = site.siteMetadata;
-	const { pageType } = pageContext;
-	const siteDescription = page.excerpt || description;
+	const { page } = data;
+	const { siteMeta, pageType } = pageContext;
+	const siteDescription = page.excerpt || siteMeta.description;
 	const { langKey } = page.fields;
-	const authorName = langs[langKey].title || title;
 
 	/* eslint-disable react/no-danger */
 	return (
@@ -25,7 +20,7 @@ export const ResumeTemplate = (props) => {
 			<Helmet
 				htmlAttributes={{ lang: langKey, class: `${pageType}` }}
 				meta={[{ name: 'description', content: siteDescription }]}
-				title={`${page.frontmatter.title} | ${authorName}`}
+				title={`${page.frontmatter.title} | ${siteMeta.title}`}
 			/>
 			<div className="grid">
 				<div className="grid-inner">
@@ -33,7 +28,7 @@ export const ResumeTemplate = (props) => {
 						className={styles.resume__body}
 						dangerouslySetInnerHTML={{ __html: page.html }}
 						sx={{
-							variant: 'cv'
+							variant: 'cv',
 						}}
 					/>
 				</div>
@@ -46,13 +41,7 @@ export default ResumeTemplate;
 
 export const pageQuery = graphql`
 	query ResumeData($path: String!) {
-		site {
-			siteMetadata {
-				title
-				author
-			}
-		}
-		markdownRemark(frontmatter: { path: { eq: $path } }) {
+		page: markdownRemark(frontmatter: { path: { eq: $path } }) {
 			id
 			excerpt
 			html

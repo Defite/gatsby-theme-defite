@@ -22,18 +22,13 @@ exports.onCreateNode = ({ node }) => {
 
 exports.createPages = async ({ graphql, actions }, options) => {
 	const { createPage } = actions;
+	const { langs = ['en'], postsPerPage = 5, siteMetadata } = options;
+	const defaultLang = langs[0];
+
 	const blogPost = require.resolve('./src/templates/blog-post.jsx');
-	const postsPerPage = options.postsPerPage || 5;
-	const defaultLang = options.langs[0];
 
 	await graphql(`
 		{
-			site {
-				siteMetadata {
-					title
-					author
-				}
-			}
 			allMarkdownRemark(
 				sort: { fields: [frontmatter___date], order: DESC }
 				limit: 1000
@@ -82,6 +77,8 @@ exports.createPages = async ({ graphql, actions }, options) => {
 					next,
 					langKey: langKey === defaultLang ? '' : langKey,
 					defaultLang,
+					siteMeta: siteMetadata[langKey],
+					langs,
 				},
 			});
 		});
@@ -95,11 +92,10 @@ exports.createPages = async ({ graphql, actions }, options) => {
 		}, []);
 
 		// Create blog post listing pages
-
 		// 1. Loop categories
 		categories.forEach((category) => {
 			// 2. Loop languages
-			options.langs.forEach((lang) => {
+			langs.forEach((lang) => {
 				const langPrefix = lang === defaultLang ? '' : `${lang}/`;
 
 				const blogPosts = edges.filter(
@@ -127,6 +123,8 @@ exports.createPages = async ({ graphql, actions }, options) => {
 							currentPage: i + 1,
 							langKey: lang,
 							defaultLang,
+							siteMeta: siteMetadata[lang],
+							langs,
 						},
 					});
 				});
@@ -155,6 +153,8 @@ exports.createPages = async ({ graphql, actions }, options) => {
 					pageType: templateKey,
 					langKey,
 					defaultLang,
+					siteMeta: siteMetadata[langKey],
+					langs,
 				},
 				component: require.resolve(`./src/templates/${templateName}.jsx`),
 			});
@@ -164,7 +164,9 @@ exports.createPages = async ({ graphql, actions }, options) => {
 
 exports.onCreatePage = async ({ page, actions }, options) => {
 	const { createPage, deletePage } = actions;
-	const defaultLang = options.langs[0];
+	const { langs = ['en'], siteMetadata } = options;
+	const defaultLang = langs[0];
+	const siteMeta = siteMetadata[defaultLang];
 
 	if (page.path.match(/offline-plugin-app-shell-fallback/)) {
 		const oldPage = { ...page };
@@ -172,6 +174,8 @@ exports.onCreatePage = async ({ page, actions }, options) => {
 		page.context = {
 			defaultLang,
 			langKey: defaultLang,
+			siteMeta,
+			langs,
 		};
 
 		// Recreate the modified page
@@ -187,8 +191,11 @@ exports.onCreatePage = async ({ page, actions }, options) => {
 		const langCode = page.path.split(`/`)[1];
 
 		page.matchPath = defaultLang === langCode ? '/*' : `/${langCode}/*`;
+
 		page.context.defaultLang = defaultLang;
 		page.context.langKey = langCode;
+		page.context.siteMeta = siteMeta;
+		page.context.langs = langs;
 
 		// Recreate the modified page
 		deletePage(oldPage);

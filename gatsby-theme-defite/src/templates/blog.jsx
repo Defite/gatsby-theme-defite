@@ -5,27 +5,24 @@ import { graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
 
 import BlogList from '../components/BlogList';
-import langs from '../langs/menuDict';
 
 export const BlogIndex = (props) => {
 	const { data, pageContext } = props;
-	const { site, markdownRemark, allMarkdownRemark } = data;
-	const { description, title } = site.siteMetadata;
-	const posts = allMarkdownRemark.edges;
-	const { langKey } = pageContext;
+	const { blog, posts } = data;
+	const { edges } = posts;
+	const { langKey, siteMeta } = pageContext;
 
-	const pageTitle = markdownRemark.frontmatter.title;
-	const authorName = langs[langKey].title || title;
+	const pageTitle = blog.frontmatter.title;
 
 	/* eslint-disable react/no-danger */
 	return (
 		<React.Fragment>
 			<Helmet
 				htmlAttributes={{ lang: langKey, class: 'blog' }}
-				meta={[{ name: 'description', content: description }]}
-				title={`${pageTitle} | ${authorName}`}
+				meta={[{ name: 'description', content: siteMeta.description }]}
+				title={`${pageTitle} | ${siteMeta.title}`}
 			/>
-			<BlogList blogTitle={pageTitle} langs={langs} posts={posts} {...props} />
+			<BlogList blogTitle={pageTitle} posts={edges} {...props} />
 		</React.Fragment>
 	);
 };
@@ -40,13 +37,7 @@ export const BlogIndexData = graphql`
 		$path: String!
 		$category: String!
 	) {
-		site {
-			siteMetadata {
-				title
-				description
-			}
-		}
-		markdownRemark(frontmatter: { path: { eq: $path } }) {
+		blog: markdownRemark(frontmatter: { path: { eq: $path } }) {
 			html
 			fields {
 				langKey
@@ -56,7 +47,7 @@ export const BlogIndexData = graphql`
 				path
 			}
 		}
-		allMarkdownRemark(
+		posts: allMarkdownRemark(
 			filter: {
 				frontmatter: {
 					templateKey: { eq: "blog-post" }

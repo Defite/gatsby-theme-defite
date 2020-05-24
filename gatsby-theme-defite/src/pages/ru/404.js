@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import React from 'react';
 import { jsx } from 'theme-ui';
-import { graphql } from 'gatsby';
 
 const NotFoundPage = () => {
 	return (
@@ -27,13 +26,3 @@ const NotFoundPage = () => {
 };
 
 export default NotFoundPage;
-
-export const pageQuery = graphql`
-	query {
-		site {
-			siteMetadata {
-				title
-			}
-		}
-	}
-`;
