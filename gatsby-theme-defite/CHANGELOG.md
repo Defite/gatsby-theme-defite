@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/Defite/gatsby-theme-defite/compare/v2.1.0...v2.2.0) (2020-05-24)
+
+
+### Features
+
+* **langs, menu:** remove MenuDict, improve menu ([91b91de](https://github.com/Defite/gatsby-theme-defite/commit/91b91dec873d0c0b4b9b83c3005a28f4cd8b8d94))
+
 ## [2.1.0](https://github.com/Defite/gatsby-theme-defite/compare/v2.0.1...v2.1.0) (2020-05-22)
 
 
