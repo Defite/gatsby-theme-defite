@@ -21,8 +21,8 @@ const Footer = (props) => {
 	return (
 		<footer className={styles.footer}>
 			<Container>
-				<div className={styles.footerUpper}>
-					<div sx={{ variant: 'footer.text' }}>
+				<div sx={{ variant: 'footer.text' }} className={styles.footerUpper}>
+					<div className={styles.footerSection}>
 						&copy; {currentYear} {developer}
 					</div>
 					{works}{' '}

@@ -3,11 +3,15 @@
     padding: 3rem 1.5rem;
 }
 
-.footer-upper a {
+.footer a {
     text-decoration: none;
     box-shadow: none;
 }
 
-.footer-upper svg {
+.footer svg {
     vertical-align: middle;
+}
+
+.footer-section {
+    margin-bottom: 5px;
 }
