@@ -172,6 +172,7 @@ exports.onCreatePage = async ({ page, actions }, options) => {
 		const oldPage = { ...page };
 
 		page.context = {
+			...page.context,
 			defaultLang,
 			langKey: defaultLang,
 			siteMeta,
@@ -180,6 +181,7 @@ exports.onCreatePage = async ({ page, actions }, options) => {
 
 		// Recreate the modified page
 		deletePage(oldPage);
+
 		createPage(page);
 	}
 

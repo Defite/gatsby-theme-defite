@@ -2,3 +2,12 @@
     background: var(--footer-background-color);
     padding: 3rem 1.5rem;
 }
+
+.footer-upper a {
+    text-decoration: none;
+    box-shadow: none;
+}
+
+.footer-upper svg {
+    vertical-align: middle;
+}

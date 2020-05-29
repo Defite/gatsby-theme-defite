@@ -3,7 +3,7 @@ import { jsx } from 'theme-ui';
 
 import { useContext } from 'react';
 import { Link } from 'gatsby';
-import styles from './style.module.css';
+import styles from './languageswitcher.module.css';
 import LangContext from '../../context/langContext';
 
 const LanguageSwitcher = () => {
