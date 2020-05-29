@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.1](https://github.com/Defite/gatsby-theme-defite/compare/v2.3.0...v2.3.1) (2020-05-29)
+
+
+### Bug Fixes
+
+* **footer, menu:** fix menu margin-top and footer text ([e99b4e3](https://github.com/Defite/gatsby-theme-defite/commit/e99b4e3a73e41bf3fa396878a3a8b9cb0c0187ec))
+* **menu, mobile:** fix menu position ([c1f1b58](https://github.com/Defite/gatsby-theme-defite/commit/c1f1b58a91d205cc846a25bdae361cfe0f29fd9e))
+
 ## [2.3.0](https://github.com/Defite/gatsby-theme-defite/compare/v2.2.0...v2.3.0) (2020-05-29)
 
 
