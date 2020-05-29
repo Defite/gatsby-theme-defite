@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/Defite/gatsby-theme-defite/compare/v2.2.0...v2.3.0) (2020-05-29)
+
+
+### Features
+
+* **footer:** add powered by footer ([176fb75](https://github.com/Defite/gatsby-theme-defite/commit/176fb75a8cd89bb677dfddda986d3ac44b01d4fc))
+
 ## [2.2.0](https://github.com/Defite/gatsby-theme-defite/compare/v2.1.0...v2.2.0) (2020-05-24)
 
 
