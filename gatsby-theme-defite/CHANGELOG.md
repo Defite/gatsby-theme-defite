@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.2](https://github.com/Defite/gatsby-theme-defite/compare/v2.3.1...v2.3.2) (2020-06-14)
+
+
+### Bug Fixes
+
+* **layout:** Remove layout transition plugin ([a58fe56](https://github.com/Defite/gatsby-theme-defite/commit/a58fe56c411ded7ac6cdaa866a2f4b10db27a045))
+
 ### [2.3.1](https://github.com/Defite/gatsby-theme-defite/compare/v2.3.0...v2.3.1) (2020-05-29)
 
 
