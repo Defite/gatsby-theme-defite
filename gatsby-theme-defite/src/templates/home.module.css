@@ -1,8 +1,18 @@
 .intro {
   grid-column: 1 / 10;
+  opacity: 0;
+  animation: moveUp 500ms ease-in-out;
+  animation-fill-mode: forwards;
+  animation-delay: .25s;
 
   @media (max-width: 768px) {
     grid-column: 1 / 12;
   }
 }
+
+@keyframes moveUp {
+  0% { opacity: 0; transform: translate3d(0, 10px, 0); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
 

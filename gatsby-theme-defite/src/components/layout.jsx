@@ -8,12 +8,11 @@ import NarbarBurger from './NavbarBurger';
 import NavbarBrand from './NavbarBrand';
 import NavbarMenu from './NavbarMenu';
 import { Styled } from 'theme-ui';
-import Transition from './transition.js';
 
 import './layout.css';
 
 const Layout = (props) => {
-	const { children, pageContext, location } = props;
+	const { children, pageContext } = props;
 	const { defaultLang, langKey, siteMeta, langs } = pageContext;
 	const langPref = langKey === defaultLang ? '' : `/${langKey}`;
 
@@ -31,17 +30,13 @@ const Layout = (props) => {
 					<Header>
 						<Navbar>
 							<NavbarBrand title={siteMeta.title} langPrefix={langPref}>
-								<Transition location={location} timeout={100}>
-									<NarbarBurger />
-								</Transition>
+								<NarbarBurger />
 							</NavbarBrand>
 							<NavbarMenu />
 						</Navbar>
 					</Header>
 
-					<Container className="main">
-						<Transition location={location}>{children}</Transition>
-					</Container>
+					<Container className="main">{children}</Container>
 					<Footer lang={langKey} />
 				</div>
 			</LangContext.Provider>

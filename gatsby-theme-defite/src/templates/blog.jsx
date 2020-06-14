@@ -1,10 +1,10 @@
 /** @jsx jsx */
-import React from 'react';
 import { jsx } from 'theme-ui';
 import { graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
 
 import BlogList from '../components/BlogList';
+import Layout from '../components/layout';
 
 export const BlogIndex = (props) => {
 	const { data, pageContext } = props;
@@ -16,14 +16,14 @@ export const BlogIndex = (props) => {
 
 	/* eslint-disable react/no-danger */
 	return (
-		<React.Fragment>
+		<Layout {...props}>
 			<Helmet
 				htmlAttributes={{ lang: langKey, class: 'blog' }}
 				meta={[{ name: 'description', content: siteMeta.description }]}
 				title={`${pageTitle} | ${siteMeta.title}`}
 			/>
 			<BlogList blogTitle={pageTitle} posts={edges} {...props} />
-		</React.Fragment>
+		</Layout>
 	);
 };
 

@@ -1,9 +1,8 @@
 /** @jsx jsx */
-import React from 'react';
 import { jsx } from 'theme-ui';
-
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
+import Layout from '../components/layout';
 
 import styles from './resume.module.css';
 
@@ -16,7 +15,7 @@ export const ResumeTemplate = (props) => {
 
 	/* eslint-disable react/no-danger */
 	return (
-		<React.Fragment>
+		<Layout {...props}>
 			<Helmet
 				htmlAttributes={{ lang: langKey, class: `${pageType}` }}
 				meta={[{ name: 'description', content: siteDescription }]}
@@ -33,7 +32,7 @@ export const ResumeTemplate = (props) => {
 					/>
 				</div>
 			</div>
-		</React.Fragment>
+		</Layout>
 	);
 };
 

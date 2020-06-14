@@ -26,10 +26,17 @@
 	position: relative;
 	overflow: hidden;
 	line-height: 0;
+	transform: scale(1);
+	transition: all 0.3s ease-in-out;
+	will-change: transform;
 
 	/* @media (max-width: 900px) {
 		font-size: 80%;
 	} */
+
+	&:hover {
+		transform: scale(1.01);
+	}
 }
 
 .card-header {

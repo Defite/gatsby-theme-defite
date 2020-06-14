@@ -3,6 +3,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
 import { jsx } from 'theme-ui';
+import Layout from '../components/layout';
 
 export const PageTemplate = (props) => {
 	const { data, pageContext } = props;
@@ -13,7 +14,7 @@ export const PageTemplate = (props) => {
 
 	/* eslint-disable react/no-danger */
 	return (
-		<React.Fragment>
+		<Layout {...props}>
 			<Helmet
 				htmlAttributes={{ lang: langKey, class: `${pageType}` }}
 				meta={[{ name: 'description', content: siteDescription }]}
@@ -36,7 +37,7 @@ export const PageTemplate = (props) => {
 					<hr />
 				</div>
 			</div>
-		</React.Fragment>
+		</Layout>
 	);
 };
 

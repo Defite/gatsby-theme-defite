@@ -1,7 +1,7 @@
 ---
 templateKey: blog-post
 category: notes
-path: /blog/post-with-code
+path: /en/blog/post-with-code
 title: Example post with text and code
 excerpt: Код из markdown-файла и iframe
 date: "2020-04-26T13:42:27"

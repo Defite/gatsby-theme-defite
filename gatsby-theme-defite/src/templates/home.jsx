@@ -2,6 +2,7 @@
 import { jsx } from 'theme-ui';
 import { graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
+import Layout from '../components/layout';
 
 import styles from './home.module.css';
 
@@ -13,7 +14,7 @@ export const IndexPage = (props) => {
 
 	/* eslint-disable react/no-danger */
 	return (
-		<div>
+		<Layout {...props}>
 			<Helmet
 				htmlAttributes={{ lang: langKey, class: 'home' }}
 				meta={[{ name: 'description', content: siteMeta.description }]}
@@ -27,7 +28,7 @@ export const IndexPage = (props) => {
 					/>
 				</section>
 			</div>
-		</div>
+		</Layout>
 	);
 };
 

@@ -3,6 +3,7 @@ import React from 'react';
 import { jsx } from 'theme-ui';
 import { Helmet } from 'react-helmet';
 import { graphql } from 'gatsby';
+import Layout from '../components/layout';
 
 import plural from '../helpers/plural';
 import postDict from '../langs/postDict';
@@ -50,7 +51,7 @@ export const BlogPostTemplate = (props) => {
 
 	/* eslint-disable react/no-danger */
 	return (
-		<React.Fragment>
+		<Layout {...props}>
 			<Helmet
 				htmlAttributes={{ lang: langKey, class: 'blog-post' }}
 				meta={[{ name: 'description', content: siteDescription }]}
@@ -74,7 +75,7 @@ export const BlogPostTemplate = (props) => {
 					dangerouslySetInnerHTML={{ __html: post.html }}
 				/>
 			</div>
-		</React.Fragment>
+		</Layout>
 	);
 };
 
