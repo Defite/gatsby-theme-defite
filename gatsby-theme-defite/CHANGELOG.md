@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.3](https://github.com/Defite/gatsby-theme-defite/compare/v2.3.2...v2.3.3) (2020-10-19)
+
+
+### Bug Fixes
+
+* **theme:** safari flex bug, ol styles ([cb7e57b](https://github.com/Defite/gatsby-theme-defite/commit/cb7e57b3f209d0697a41d15739c5fc8b50e5f6dc))
+
 ### [2.3.2](https://github.com/Defite/gatsby-theme-defite/compare/v2.3.1...v2.3.2) (2020-06-14)
 
 
