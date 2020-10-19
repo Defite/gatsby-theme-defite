@@ -143,6 +143,9 @@ export default {
 			variant: 'text.p',
 			fontSize: '1.2rem',
 		},
+		ol: {
+			variant: 'post.p'
+		}
 	},
 	cv: {
 		h1: {

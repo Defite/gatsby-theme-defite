@@ -3,6 +3,7 @@
 	flex-flow: row wrap;
 	justify-content: space-between;
 	margin: 1.5rem 0 3rem 0;
+	flex-shrink: 0;
 	
 	& a {
 		text-decoration: none;
