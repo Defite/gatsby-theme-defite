@@ -4,7 +4,7 @@ import Container from '../components/Container';
 import Header from './Header';
 import Footer from './Footer';
 import Navbar from './Navbar';
-import NarbarBurger from './NavbarBurger';
+import NavbarBurger from './NavbarBurger';
 import NavbarBrand from './NavbarBrand';
 import NavbarMenu from './NavbarMenu';
 import { Styled } from 'theme-ui';
@@ -30,7 +30,7 @@ const Layout = (props) => {
 					<Header>
 						<Navbar>
 							<NavbarBrand title={siteMeta.title} langPrefix={langPref}>
-								<NarbarBurger />
+								<NavbarBurger />
 							</NavbarBrand>
 							<NavbarMenu />
 						</Navbar>

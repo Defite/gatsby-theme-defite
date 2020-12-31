@@ -73,20 +73,14 @@ module.exports = ({
 		},
 		'gatsby-plugin-react-helmet',
 		{
-			resolve: 'gatsby-plugin-prefetch-google-fonts',
+			resolve: 'gatsby-plugin-web-font-loader',
 			options: {
-				fonts: [
-					{
-						family: 'Nunito',
-						subsets: ['cyrillic'],
-						variants: ['400', '500', '600', '700', '800'],
-					},
-					{
-						family: 'Source Sans Pro',
-						subsets: ['cyrillic'],
-						variants: ['400', '600', '700', '900'],
-					},
-				],
+				google: {
+					families: [
+						'Nunito:400,500,600,700,800:cyrillic',
+						'Source Sans Pro:400,600,700,900:cyrillic',
+					],
+				},
 			},
 		},
 		{
