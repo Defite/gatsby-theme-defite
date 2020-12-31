@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.4](https://github.com/Defite/gatsby-theme-defite/compare/v2.3.3...v2.3.4) (2020-12-31)
+
+
+### Bug Fixes
+
+* **core:** update packages, fix stuff ([67cf7d9](https://github.com/Defite/gatsby-theme-defite/commit/67cf7d9734b14f1e7f07a2076b01dbf84d57778e))
+
 ### [2.3.3](https://github.com/Defite/gatsby-theme-defite/compare/v2.3.2...v2.3.3) (2020-10-19)
 
 
